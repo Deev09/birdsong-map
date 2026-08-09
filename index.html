@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Birdsong Map — Iowa</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand">
+    <h1>Birdsong&nbsp;Map</h1>
+    <p class="tag" id="tag">Sweep the map. Every county sounds different.</p>
+  </div>
+
+  <div class="shapes" role="group" aria-label="Filter by sound shape">
+    <span class="shapes-label">I heard a…</span>
+    <button class="chip" data-shape="whistle"><i></i>whistle</button>
+    <button class="chip" data-shape="trill"><i></i>trill</button>
+    <button class="chip" data-shape="chatter"><i></i>chatter</button>
+    <button class="chip" data-shape="hoot"><i></i>hoot</button>
+    <button class="chip" data-shape="honk"><i></i>honk</button>
+    <button class="chip" data-shape="buzz"><i></i>buzz</button>
+    <button class="chip" data-shape="screech"><i></i>screech</button>
+  </div>
+
+  <label class="toggle">
+    <input type="checkbox" id="hoverSound" checked>
+    <span>Sound on hover</span>
+  </label>
+</header>
+
+<main>
+  <div class="stage" id="stage">
+    <svg id="map" role="application" aria-label="Map of Iowa counties. Arrow keys to move, Enter to open."></svg>
+    <div class="ring" id="ring" aria-hidden="true"></div>
+
+    <div class="peek" id="peek" hidden>
+      <canvas class="spec" id="peekSpec" width="224" height="112"></canvas>
+      <div class="peek-txt">
+        <div class="peek-name" id="peekName"></div>
+        <div class="peek-sub" id="peekSub"></div>
+      </div>
+    </div>
+
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <div class="timeline">
+    <button class="yearplay" id="yearplay" aria-label="Play through the year">▶</button>
+    <div class="months" id="months" role="group" aria-label="Month"></div>
+  </div>
+
+  <section class="tray">
+    <div class="tray-head">
+      <h2 id="place">Hover a county</h2>
+      <p id="sub">Click one to open it</p>
+    </div>
+    <div class="rail" id="rail"></div>
+  </section>
+</main>
+
+<div class="sheet" id="sheet" hidden>
+  <button class="sheet-x" id="sheetX" aria-label="Close">✕</button>
+  <div class="sheet-body">
+    <img id="sheetImg" alt="">
+    <div class="sheet-main">
+      <h3 id="sheetName"></h3>
+      <div class="sheet-sci" id="sheetSci"></div>
+      <canvas class="spec big" id="sheetSpec" width="440" height="150"></canvas>
+      <div class="sheet-tags" id="sheetTags"></div>
+      <p class="sheet-blurb" id="sheetBlurb"></p>
+      <div class="alike">
+        <div class="alike-h">Sounds similar</div>
+        <div class="alike-row" id="alike"></div>
+      </div>
+      <div class="sheet-attrib" id="sheetAttrib"></div>
+    </div>
+  </div>
+</div>
+
+<footer class="credits">
+  <p>
+    Occurrence: <a href="https://doi.org/10.15468/aomfnb">GBIF eBird Observation Dataset</a> (CC&nbsp;BY&nbsp;4.0) ·
+    Photos: <a href="https://avicommons.org">Avicommons</a> ·
+    Audio: <a href="https://commons.wikimedia.org">Wikimedia Commons</a> ·
+    Text: <a href="https://en.wikipedia.org">Wikipedia</a> (CC&nbsp;BY-SA&nbsp;4.0)
+  </p>
+  <p class="fine">
+    Ranking is <strong>relative record count</strong>, not detection probability. Sound shapes are measured from the
+    specific clip we ship (pitch, tonality, pulse rate) — a species with several calls is tagged for the one you hear.
+    Snapshot ends 2024-12-31.
+  </p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

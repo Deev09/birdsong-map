@@ -1,0 +1,9 @@
+# Build caches — regenerable, and large
+build/.cache/
+build/__pycache__/
+*.pyc
+
+.DS_Store
+
+# local preview config (absolute paths, machine-specific)
+.claude/

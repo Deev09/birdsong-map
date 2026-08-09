@@ -1,0 +1,18 @@
+{
+  "state": "USA.16_1",
+  "counties": 99,
+  "species": 257,
+  "coverage": {
+    "photo": 251,
+    "audio": 216,
+    "blurb": 251,
+    "audio_clipped": 204
+  },
+  "sources": {
+    "occurrence": "GBIF eBird Observation Dataset (CC BY 4.0), DOI 10.15468/aomfnb",
+    "photos": "Avicommons (mixed CC, mostly CC BY-NC)",
+    "audio": "Wikimedia Commons (mixed CC)",
+    "text": "Wikipedia (CC BY-SA 4.0)"
+  },
+  "notes": "top-N per county-month is capped by --top (facetLimit); 98% of Iowa county-months are clipped at 30."
+}
