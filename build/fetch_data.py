@@ -140,8 +140,30 @@ def county_month_species(gid, month, top):
         "facetLimit": top,
         "license": ["CC_BY_4_0", "CC0_1_0"],
     })
+
+    # GBIF silently DROPS parameters it doesn't recognise rather than rejecting
+    # them: one typo (`protectedArea=Yellowstone`) returns HTTP 200 and a count
+    # of 3.9 billion -- the entire database -- and the build would happily
+    # ingest it as a county. Verified live. There is no error to catch, so the
+    # only defence is a plausibility check. The biggest real US county-month is
+    # a few million; 50M is far above that and far below a dropped filter.
+    count = d.get("count", 0)
+    if count > 50_000_000:
+        raise RuntimeError(
+            f"implausible count {count:,} for {gid} m{month} — a filter was "
+            f"probably dropped; check parameter spelling against GBIF's "
+            f"OccurrenceSearchParameter enum"
+        )
+
     facets = d.get("facets") or []
     if not facets:
+        # An unrecognised facet name also yields HTTP 200 with facets: [].
+        # Distinguish "no birds here" from "the facet name was wrong".
+        if count > 0:
+            raise RuntimeError(
+                f"{count:,} records for {gid} m{month} but no facets returned — "
+                f"the facet name was likely rejected silently"
+            )
         return []
     return [(int(c["name"]), c["count"]) for c in facets[0]["counts"]]
 
