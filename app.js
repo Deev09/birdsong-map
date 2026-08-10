@@ -755,7 +755,21 @@ async function boot() {
     mwrap.appendChild(b);
   }
 
+  // Show how many species each shape actually has. Two chips hold most of the
+  // corpus and three hold a handful, so without this "hoot" looks broken rather
+  // than rare.
+  const shapeCount = {};
+  for (const s of Object.values(SPECIES)) {
+    if (!s.clip || !s.sound) continue;
+    for (const t of s.sound.tags) shapeCount[t] = (shapeCount[t] || 0) + 1;
+  }
   for (const c of document.querySelectorAll('.chip')) {
+    const n = shapeCount[c.dataset.shape] || 0;
+    const tally = document.createElement('span');
+    tally.className = 'tally';
+    tally.textContent = n;
+    c.appendChild(tally);
+    if (n < 10) c.classList.add('rare');
     c.addEventListener('click', () => setShape(state.shape === c.dataset.shape ? null : c.dataset.shape));
   }
 

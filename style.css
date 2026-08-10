@@ -148,6 +148,19 @@ a { color: var(--accent); }
 
 .chip:hover { color: var(--ink); border-color: var(--c, var(--accent)); }
 
+.tally {
+  margin-left: 2px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--c) 18%, transparent);
+  color: var(--c);
+  font-size: 10.5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.chip.on .tally { background: rgba(0, 0, 0, .28); color: inherit; }
+.chip.rare { opacity: .72; }   /* honest about the thin buckets */
+
 .chip.on {
   color: #0d1014;
   background: var(--c);
