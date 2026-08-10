@@ -3,12 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Birdsong Map — Iowa</title>
+<title>Birdsong Map — hear the birds of every Iowa county</title>
+<meta name="description" content="Sweep a map of Iowa and hear what lives there. 99 counties, 204 bird calls, every month of the year — and you can search by what a sound was like: trill, whistle, hoot. Free, no ads, no account.">
+<link rel="canonical" href="https://deev09.github.io/birdsong-map/">
+<meta name="theme-color" content="#0d1014">
+<meta name="author" content="Deev Swain">
+
+<!-- Absolute URLs: crawlers resolve these outside the page's own context. -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Birdsong Map">
+<meta property="og:url" content="https://deev09.github.io/birdsong-map/">
+<meta property="og:title" content="Birdsong Map — hear the birds of every Iowa county">
+<meta property="og:description" content="Hover a county to hear its birds. Or search by what a sound was like — trill, whistle, hoot. 99 counties, 204 calls, 12 months.">
+<meta property="og:image" content="https://deev09.github.io/birdsong-map/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A map of Iowa's 99 counties, each shaded by the bird sound most over-represented there.">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Birdsong Map — hear the birds of every Iowa county">
+<meta name="twitter:description" content="Hover a county to hear its birds. Or search by what a sound was like — trill, whistle, hoot.">
+<meta name="twitter:image" content="https://deev09.github.io/birdsong-map/og.png">
+
+<!-- Inline SVG favicon: no extra request, no binary asset to keep in sync. -->
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%90%A6</text></svg>">
 <!-- ?v= is bumped by build/bump_version.py on every deploy. GitHub Pages caches
      assets for 10 minutes, so without it a returning visitor can get a fresh
      index.html against a stale app.js — which shipped a page whose new markup
      the old script knew nothing about. -->
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -129,8 +152,21 @@
     specific clip we ship (pitch, tonality, pulse rate) — a species with several calls is tagged for the one you hear.
     Snapshot ends 2024-12-31.
   </p>
+  <p class="fine">
+    Free forever — no ads, no accounts, no tracking. Built by
+    <a href="https://github.com/Deev09">Deev Swain</a> ·
+    <a href="https://github.com/Deev09/birdsong-map">source and how it was made</a>
+  </p>
 </footer>
 
-<script src="app.js?v=5"></script>
+<noscript>
+  <p style="max-width:60ch;margin:20px auto;padding:0 16px;line-height:1.6">
+    Birdsong Map needs JavaScript: it plays bird calls from a map of Iowa's 99 counties.
+    The data and the build pipeline are on
+    <a href="https://github.com/Deev09/birdsong-map">GitHub</a>.
+  </p>
+</noscript>
+
+<script src="app.js?v=6"></script>
 </body>
 </html>
