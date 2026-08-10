@@ -223,9 +223,11 @@ NonCommercial or NoDerivatives, because Commons accepts only free licenses; unde
 redistributing an edited clip would be prohibited outright rather than merely conditional.
 Photos are hot-linked, never redistributed.
 
-Free, no ads, no IAP is a design constraint, not an accident. Roughly two-thirds of
-Avicommons photos are CC BY-NC and 98.9% of xeno-canto is NonCommercial, so **monetising
-means re-sourcing every photo and every recording.** Decide before building further.
+**This project is free forever — no ads, no IAP.** That is a deliberate, settled decision,
+not an oversight. It is what makes the whole NonCommercial corpus usable: roughly
+two-thirds of Avicommons photos and 98.9% of xeno-canto are NC, and all of it is available
+to a genuinely free app. The corollary is that **monetising later would mean re-sourcing
+every photo and every recording** — treat the constraint as load-bearing.
 
 Per-card attribution (photographer, recordist, license, Wikipedia link) renders on every
 card. That is a license obligation, not decoration — don't remove it.
