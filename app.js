@@ -45,12 +45,22 @@ const canHover = () => window.matchMedia('(hover: hover)').matches;
 
 // ------------------------------------------------------------------ audio
 
+// A decoded 6 s / 48 kHz mono clip is float32 PCM: 1.1 MiB resident, a 27x
+// expansion over the 42 KB file. Caching every decode would reach ~224 MiB
+// across the 204 clips and take the tab down for exactly the users who explore
+// most. So keep every *compressed* buffer (8 MB total, cheap) and hold only a
+// small window of decoded ones.
+const MAX_DECODED = 24;   // ~26 MiB
+
 const AudioKit = {
   ctx: null,
-  buffers: new Map(),
+  raw: new Map(),        // url -> ArrayBuffer (compressed, keep all)
+  buffers: new Map(),    // url -> AudioBuffer (decoded, LRU-capped)
   inflight: new Map(),
   src: null,
   current: null,
+  seq: 0,
+  ready: false,
 
   init() {
     if (!this.ctx) {
@@ -58,21 +68,48 @@ const AudioKit = {
       this.gain = this.ctx.createGain();
       this.gain.gain.value = 0.9;
       this.gain.connect(this.ctx.destination);
+      this.ctx.onstatechange = () => {
+        this.ready = this.ctx.state === 'running';
+        document.body.classList.toggle('muted', !this.ready);
+      };
     }
-    // Browsers start the context suspended until a real gesture.
     if (this.ctx.state === 'suspended') this.ctx.resume();
+    this.ready = this.ctx.state === 'running';
+    return this.ready;
   },
 
-  load(url) {
-    if (this.buffers.has(url)) return Promise.resolve(this.buffers.get(url));
+  fetchRaw(url) {
+    if (this.raw.has(url)) return Promise.resolve(this.raw.get(url));
     if (this.inflight.has(url)) return this.inflight.get(url);
     const p = fetch(url)
-      .then(r => r.arrayBuffer())
-      .then(b => this.ctx.decodeAudioData(b))
-      .then(buf => { this.buffers.set(url, buf); this.inflight.delete(url); return buf; })
+      .then(r => (r.ok ? r.arrayBuffer() : null))
+      .then(b => { if (b) this.raw.set(url, b); this.inflight.delete(url); return b; })
       .catch(() => { this.inflight.delete(url); return null; });
     this.inflight.set(url, p);
     return p;
+  },
+
+  async decoded(url) {
+    const hit = this.buffers.get(url);
+    if (hit) {                       // refresh LRU position
+      this.buffers.delete(url);
+      this.buffers.set(url, hit);
+      return hit;
+    }
+    const raw = await this.fetchRaw(url);
+    if (!raw || !this.ctx) return null;
+    let buf;
+    try {
+      // decodeAudioData detaches its input, so hand it a copy and keep ours.
+      buf = await this.ctx.decodeAudioData(raw.slice(0));
+    } catch (e) {
+      return null;
+    }
+    this.buffers.set(url, buf);
+    while (this.buffers.size > MAX_DECODED) {
+      this.buffers.delete(this.buffers.keys().next().value);
+    }
+    return buf;
   },
 
   stop() {
@@ -87,11 +124,15 @@ const AudioKit = {
   },
 
   async play(key) {
-    this.init();
     const sp = SPECIES[key];
     if (!sp || !sp.clip) return;
-    const buf = await this.load(sp.clip);
-    if (!buf) return;
+    if (!this.init()) return;        // suspended: stay silent AND stay honest
+
+    // A slow fetch for a county the pointer already left must not stop the
+    // cached one playing now.
+    const tok = ++this.seq;
+    const buf = await this.decoded(sp.clip);
+    if (!buf || tok !== this.seq || !this.ready) return;
 
     this.stop();
     const s = this.ctx.createBufferSource();
@@ -100,18 +141,18 @@ const AudioKit = {
     s.start();
     this.src = s;
     this.current = key;
-    markSounding(key, true);
+    markSounding(key, true);   // only ever after a real start()
     s.onended = () => {
       if (this.src === s) { this.src = null; markSounding(key, false); this.current = null; }
     };
   },
 
-  // Warm the cache for what the pointer is about to touch.
+  // Warm what the pointer is about to touch — compressed only, so prefetching a
+  // whole county costs ~500 KB of memory rather than ~13 MiB of decoded PCM.
   prefetch(keys) {
-    if (!this.ctx) return;
     keys.slice(0, 14).forEach(k => {
       const sp = SPECIES[k];
-      if (sp && sp.clip) this.load(sp.clip);
+      if (sp && sp.clip) this.fetchRaw(sp.clip);
     });
   },
 };
@@ -502,7 +543,7 @@ function drawRing() {
     });
     pip.addEventListener('focus', () => {
       showPeek(pip, key, sp.name, (sp.sound && sp.sound.tags.join(' · ')) || '');
-      AudioKit.play(key);
+      if (state.hoverSound) AudioKit.play(key);
     });
     pip.addEventListener('click', () => tapBird(key, pip, sp));
     ring.appendChild(pip);
@@ -545,7 +586,8 @@ function drawRail() {
        <div class="cap"><div class="cn"></div><div class="cs">${tagHtml(sp)}</div></div>`;
     b.querySelector('.cn').textContent = sp.name;
     b.addEventListener('pointerenter', () => { if (state.hoverSound) AudioKit.play(key); });
-    b.addEventListener('focus', () => AudioKit.play(key));   // keyboard = hover
+    // Keyboard focus is the hover equivalent, so it obeys the same toggle.
+    b.addEventListener('focus', () => { if (state.hoverSound) AudioKit.play(key); });
     b.addEventListener('click', () => tapBird(key, b, sp));
     frag.appendChild(b);
   }
@@ -606,6 +648,7 @@ function openSheet(key) {
   const sp = SPECIES[key];
   const sheet = document.getElementById('sheet');
   sheet.hidden = false;
+  state.sheetKey = key;
 
   const img = document.getElementById('sheetImg');
   if (sp.photo) { img.src = sp.photo.url; img.style.display = ''; } else { img.style.display = 'none'; }
@@ -620,10 +663,13 @@ function openSheet(key) {
   for (const k of similar(key)) {
     const o = SPECIES[k];
     const b = document.createElement('button');
+    b.dataset.key = k;
     b.innerHTML = `${o.photo ? `<img src="${o.photo.thumb}" alt="">` : ''}<span></span>`;
     b.querySelector('span').textContent = o.name;
-    b.addEventListener('pointerenter', () => AudioKit.play(k));
-    b.addEventListener('click', () => openSheet(k));
+    b.addEventListener('pointerenter', () => { if (state.hoverSound) AudioKit.play(k); });
+    // Click plays rather than navigating. Comparing is the whole point of this
+    // row — jumping to a new sheet threw away the bird you were comparing against.
+    b.addEventListener('click', () => AudioKit.play(k));
     alike.appendChild(b);
   }
 
@@ -720,19 +766,43 @@ async function boot() {
 
   document.getElementById('yearplay').addEventListener('click', toggleYear);
   document.getElementById('sheetX').addEventListener('click', closeSheet);
+  document.getElementById('sheetPlay').addEventListener('click', () => {
+    if (state.sheetKey) AudioKit.play(state.sheetKey);
+  });
   document.getElementById('sheet').addEventListener('click', e => {
     if (e.target.id === 'sheet') closeSheet();
   });
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') { closeSheet(); hidePeek(); }
+    // Space replays the open bird — the natural key for "again".
+    if ((e.key === ' ' || e.key === 'Spacebar') && !document.getElementById('sheet').hidden) {
+      e.preventDefault();
+      if (state.sheetKey) AudioKit.play(state.sheetKey);
+    }
   });
+
+  // The gate is the ONLY place audio gets unlocked, so the first sound a user
+  // triggers is guaranteed to be audible. Hovering is not an activation
+  // gesture, so without this the map is silent until an unrelated click.
+  const gate = document.getElementById('gate');
+  const openGate = () => {
+    AudioKit.init();
+    gate.classList.add('gone');
+    setTimeout(() => { gate.hidden = true; }, 400);
+  };
+  document.getElementById('gateGo').addEventListener('click', openGate);
+  gate.addEventListener('click', e => { if (e.target === gate) openGate(); });
+
+  // Respect a checkbox the browser restored from a previous session.
+  state.hoverSound = document.getElementById('hoverSound').checked;
 
   document.getElementById('stage').addEventListener('pointerleave', () => { hidePeek(); });
   window.addEventListener('resize', () => drawRing());
 
-  // AudioContext can't start until a gesture; unlock on the first one.
-  const unlock = () => { AudioKit.init(); window.removeEventListener('pointerdown', unlock); };
-  window.addEventListener('pointerdown', unlock);
+  // Belt and braces: if the gate is dismissed some other way, any real gesture
+  // still unlocks. init() is idempotent.
+  const unlock = () => AudioKit.init();
+  window.addEventListener('pointerdown', unlock, { once: true });
   window.addEventListener('keydown', unlock, { once: true });
 
   const polk = Object.keys(REGIONS).find(g => REGIONS[g].name === 'Polk');
