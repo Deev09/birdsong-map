@@ -210,6 +210,47 @@ main { padding: 0 clamp(14px, 3vw, 32px); }
 
 #map path:focus-visible { outline: none; stroke: var(--accent); stroke-width: 2; }
 
+/* loading / failure state over the reserved map box */
+.boot {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 12px;
+  text-align: center;
+  padding: 20px;
+}
+
+.boot[hidden] { display: none; }
+.boot-msg { margin: 0; color: var(--muted); font-size: 13.5px; max-width: 34ch; }
+
+.boot-spin {
+  width: 26px; height: 26px;
+  border: 2px solid var(--line);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.boot.failed .boot-spin { display: none; }
+.boot.failed .boot-msg { color: var(--ink); }
+
+.boot-retry {
+  padding: 9px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--accent);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.boot-retry:hover { background: var(--accent); color: #0d1014; }
+
 /* radial halo of birds around the opened county */
 .ring { position: absolute; inset: 0; pointer-events: none; }
 

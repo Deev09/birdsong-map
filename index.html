@@ -43,8 +43,18 @@
 
 <main>
   <div class="stage" id="stage">
-    <svg id="map" role="group" aria-label="Iowa counties. Tab to a county, Enter to open it."></svg>
+    <!-- viewBox is set up front so the stage reserves its height and the page
+         doesn't jump when the map data lands. Replaced with the measured
+         projection once counties.geojson is parsed. -->
+    <svg id="map" viewBox="0 0 1000 647" role="group"
+         aria-label="Iowa counties. Tab to a county, Enter to open it."></svg>
     <div class="ring" id="ring" aria-hidden="true"></div>
+
+    <div class="boot" id="boot" role="status" aria-live="polite">
+      <div class="boot-spin" aria-hidden="true"></div>
+      <p class="boot-msg" id="bootMsg">Loading bird data…</p>
+      <button class="boot-retry" id="bootRetry" hidden>Try again</button>
+    </div>
 
     <div class="peek" id="peek" hidden>
       <canvas class="spec" id="peekSpec" width="224" height="112"></canvas>

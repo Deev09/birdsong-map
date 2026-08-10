@@ -697,6 +697,7 @@ function select(gid) {
   paint();
   drawRing();
   drawRail();
+  writeUrl();
 }
 
 function setMonth(m) {
@@ -705,6 +706,7 @@ function setMonth(m) {
   paint();
   drawRing();
   drawRail();
+  writeUrl();
 }
 
 function setShape(s) {
@@ -716,6 +718,7 @@ function setShape(s) {
   paint();
   drawRing();
   drawRail();
+  writeUrl();
 }
 
 function toggleYear() {
@@ -732,20 +735,93 @@ function toggleYear() {
   state.yearTimer = setInterval(() => setMonth(state.month % 12 + 1), 900);
 }
 
+// ------------------------------------------------------------------ url state
+
+/**
+ * The URL is the share format: #winneshiek/6/trill
+ *
+ * Written with replaceState rather than location.hash so that clicking through
+ * twenty counties doesn't bury the user's previous page under twenty history
+ * entries — but the address bar still always describes what is on screen, which
+ * is the whole point of being linkable.
+ */
+const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+function writeUrl() {
+  if (!state.gid || !REGIONS[state.gid]) return;
+  const parts = [slug(REGIONS[state.gid].name), state.month];
+  if (state.shape) parts.push(state.shape);
+  const hash = '#' + parts.join('/');
+  if (location.hash !== hash) history.replaceState(null, '', hash);
+}
+
+/** Apply a hash. Returns false if there was nothing usable to apply. */
+function readUrl() {
+  const raw = decodeURIComponent(location.hash.replace(/^#\/?/, '')).trim();
+  if (!raw) return false;
+  const [county, month, shape] = raw.split('/');
+
+  const gid = Object.keys(REGIONS).find(g => slug(REGIONS[g].name) === county);
+  if (!gid) return false;
+
+  const m = parseInt(month, 10);
+  if (m >= 1 && m <= 12) state.month = m;
+  state.shape = SHAPE_ORDER.includes(shape) ? shape : null;
+
+  for (const b of document.querySelectorAll('.mbtn')) {
+    b.classList.toggle('on', +b.dataset.m === state.month);
+  }
+  for (const c of document.querySelectorAll('.chip')) {
+    c.classList.toggle('on', c.dataset.shape === state.shape);
+  }
+  select(gid);
+  return true;
+}
+
 // ------------------------------------------------------------------ boot
 
+function bootStatus(msg, retry) {
+  const el = document.getElementById('boot');
+  if (!msg) { el.hidden = true; return; }
+  el.hidden = false;
+  el.classList.toggle('failed', !!retry);
+  document.getElementById('bootMsg').textContent = msg;
+  document.getElementById('bootRetry').hidden = !retry;
+}
+
+async function loadJson(url) {
+  const r = await fetch(url);
+  // GitHub Pages answers a missing path with an HTML 404 page, which parses as
+  // JSON failure far from here. Fail at the fetch, where the URL is still known.
+  if (!r.ok) throw new Error(`${url} — HTTP ${r.status}`);
+  return r.json();
+}
+
 async function boot() {
-  const [geo, species, regions, specs] = await Promise.all([
-    fetch('data/counties.geojson').then(r => r.json()),
-    fetch('data/species.json').then(r => r.json()),
-    fetch('data/regions.json').then(r => r.json()),
-    fetch('data/spectrograms.json').then(r => r.json()).catch(() => ({})),
-  ]);
-  GEO = geo; SPECIES = species; REGIONS = regions; SPECS = specs;
+  bootStatus('Loading bird data…');
+  let geo, species, regions;
+  try {
+    [geo, species, regions] = await Promise.all([
+      loadJson('data/counties.geojson'),
+      loadJson('data/species.json'),
+      loadJson('data/regions.json'),
+    ]);
+  } catch (err) {
+    // Previously this rejected into nothing and left a permanently empty page
+    // that looked finished.
+    bootStatus(`Couldn't load the bird data. ${err.message}`, true);
+    return;
+  }
+  GEO = geo; SPECIES = species; REGIONS = regions;
+  bootStatus(null);
 
   drawMap();
 
+  // boot() reruns on Retry, so anything that appends or binds must be
+  // idempotent. The first version doubled the chip tallies and added twelve
+  // extra month buttons on every retry.
   const mwrap = document.getElementById('months');
+  mwrap.innerHTML = '';
   for (let m = 1; m <= 12; m++) {
     const b = document.createElement('button');
     b.className = 'mbtn' + (m === state.month ? ' on' : '');
@@ -765,11 +841,19 @@ async function boot() {
   }
   for (const c of document.querySelectorAll('.chip')) {
     const n = shapeCount[c.dataset.shape] || 0;
+    const old = c.querySelector('.tally');
+    if (old) old.remove();
     const tally = document.createElement('span');
     tally.className = 'tally';
     tally.textContent = n;
     c.appendChild(tally);
-    if (n < 10) c.classList.add('rare');
+    c.classList.toggle('rare', n < 10);
+  }
+
+  if (boot.wired) return finishBoot();
+  boot.wired = true;
+
+  for (const c of document.querySelectorAll('.chip')) {
     c.addEventListener('click', () => setShape(state.shape === c.dataset.shape ? null : c.dataset.shape));
   }
 
@@ -819,8 +903,26 @@ async function boot() {
   window.addEventListener('pointerdown', unlock, { once: true });
   window.addEventListener('keydown', unlock, { once: true });
 
-  const polk = Object.keys(REGIONS).find(g => REGIONS[g].name === 'Polk');
-  select(polk);
+  // Someone edits the hash, or arrives via back/forward.
+  window.addEventListener('hashchange', () => { if (!readUrl()) writeUrl(); });
+
+  finishBoot();
 }
+
+/** The part that must run on every (re)boot, after data is in hand. */
+function finishBoot() {
+  // Spectrograms are only needed once something is hovered or opened, so keep
+  // their ~323 KB off the critical path. drawSpec already no-ops when missing.
+  loadJson('data/spectrograms.json')
+    .then(s => { SPECS = s; })
+    .catch(() => { SPECS = {}; });
+
+  // A shared link wins; otherwise open on Des Moines, the example that started this.
+  if (!readUrl()) {
+    select(Object.keys(REGIONS).find(g => REGIONS[g].name === 'Polk'));
+  }
+}
+
+document.getElementById('bootRetry').addEventListener('click', () => boot());
 
 boot();
