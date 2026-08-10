@@ -8,7 +8,7 @@
      assets for 10 minutes, so without it a returning visitor can get a fresh
      index.html against a stale app.js — which shipped a page whose new markup
      the old script knew nothing about. -->
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -69,7 +69,15 @@
     </div>
 
     <div class="legend" id="legend"></div>
+    <p class="hint" id="hint">
+      Move off the map, press <kbd>Esc</kbd>, or click anywhere empty to stop the sound.
+    </p>
   </div>
+
+  <button class="stopbar" id="stopbar" hidden>
+    <span class="stopbar-ico" aria-hidden="true"></span>
+    Stop sound <kbd>Esc</kbd>
+  </button>
 
   <div class="timeline">
     <button class="yearplay" id="yearplay" aria-label="Play through the year">▶</button>
@@ -123,6 +131,6 @@
   </p>
 </footer>
 
-<script src="app.js?v=4"></script>
+<script src="app.js?v=5"></script>
 </body>
 </html>

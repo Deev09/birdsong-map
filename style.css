@@ -329,6 +329,51 @@ main { padding: 0 clamp(14px, 3vw, 32px); }
 .legend b { display: inline-flex; align-items: center; gap: 5px; font-weight: 400; }
 .legend b::before { content: ""; width: 9px; height: 9px; border-radius: 2px; background: var(--c); }
 
+.hint { margin: 8px 0 0; color: var(--muted); font-size: 11.5px; }
+
+kbd {
+  padding: 1px 5px;
+  border: 1px solid var(--line);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  background: var(--panel);
+  font: inherit;
+  font-size: .92em;
+}
+
+/* Only present while audio is playing — the control appears exactly when the
+   user wants it and never clutters the page otherwise. */
+.stopbar {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 90;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  animation: rise .18s ease-out;
+}
+
+.stopbar[hidden] { display: none; }
+.stopbar:hover { border-color: var(--accent); }
+
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+
+.stopbar-ico {
+  width: 11px; height: 11px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+
 /* ---------------- timeline ---------------- */
 
 .timeline {
@@ -569,9 +614,7 @@ main { padding: 0 clamp(14px, 3vw, 32px); }
 
   /* .pip sizing stays in JS — drawRing() derives the ring radius from it. */
 
-  .hint::after {
-    content: " · tap a county to hear it, tap a bird twice for details";
-  }
+  .hint { font-size: 12px; }
 }
 
 @media (max-width: 560px) {

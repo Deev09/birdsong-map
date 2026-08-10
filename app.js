@@ -177,6 +177,10 @@ function markSounding(key, on) {
   for (const el of document.querySelectorAll(`[data-key="${key}"]`)) {
     el.classList.toggle('sounding', on);
   }
+  // A stop control that is only present while something is playing explains
+  // itself at the moment it is needed, and stays out of the way otherwise.
+  const bar = document.getElementById('stopbar');
+  if (bar) bar.hidden = !on;
 }
 
 // ------------------------------------------------------------------ geometry
@@ -871,7 +875,7 @@ async function boot() {
     if (e.target.id === 'sheet') closeSheet();
   });
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') { closeSheet(); hidePeek(); }
+    if (e.key === 'Escape') { AudioKit.stop(); closeSheet(); hidePeek(); }
     // Space replays the open bird — the natural key for "again".
     if ((e.key === ' ' || e.key === 'Spacebar') && !document.getElementById('sheet').hidden) {
       e.preventDefault();
@@ -894,7 +898,22 @@ async function boot() {
   // Respect a checkbox the browser restored from a previous session.
   state.hoverSound = document.getElementById('hoverSound').checked;
 
-  document.getElementById('stage').addEventListener('pointerleave', () => { hidePeek(); });
+  // Silence needs to be as easy to reach as sound. A clip runs ~6 s, so without
+  // these the only way out was to wait it out.
+  document.getElementById('stage').addEventListener('pointerleave', () => {
+    hidePeek();
+    if (canHover()) AudioKit.stop();     // moving off the map means "enough"
+  });
+
+  document.getElementById('stopbar').addEventListener('click', () => AudioKit.stop());
+
+  // Clicking any empty part of the page stops. Anything that plays or explains
+  // is excluded, so this can't fight the thing the user just clicked.
+  document.addEventListener('click', e => {
+    if (!e.target.closest('#stage, .rail, .sheet, .top, .timeline, #stopbar')) {
+      AudioKit.stop();
+    }
+  });
   window.addEventListener('resize', () => drawRing());
 
   // Belt and braces: if the gate is dismissed some other way, any real gesture
