@@ -31,7 +31,17 @@ const state = {
   shape: null,
   hoverSound: true,
   yearTimer: null,
+  lastTapped: null,   // touch: first tap hears, second tap opens details
 };
+
+/**
+ * Touch devices never fire pointerenter, so a hover-driven map is silent on a
+ * phone: tapping a county opened its halo and played nothing at all. Checked
+ * live rather than assumed — a real tap emits pointerdown/pointerup/click and
+ * nothing else. Query this per interaction rather than caching it, because
+ * hybrid laptops gain and lose a mouse at runtime.
+ */
+const canHover = () => window.matchMedia('(hover: hover)').matches;
 
 // ------------------------------------------------------------------ audio
 
@@ -105,6 +115,22 @@ const AudioKit = {
     });
   },
 };
+
+/**
+ * What a tap on a bird means.
+ *
+ * With a mouse, hover already played it, so a click means "tell me more".
+ * With a finger there was no hover, so the first tap has to be the sound —
+ * opening a full-screen sheet over the map on every tap would bury the one
+ * thing people came for. Tap again on the same bird to open the details.
+ */
+function tapBird(key, el, sp) {
+  if (canHover()) { openSheet(key); return; }
+  if (state.lastTapped === key) { state.lastTapped = null; openSheet(key); return; }
+  state.lastTapped = key;
+  AudioKit.play(key);
+  if (el) showPeek(el, key, sp.name, (sp.sound && sp.sound.tags.join(' · ')) || '');
+}
 
 function markSounding(key, on) {
   for (const el of document.querySelectorAll(`[data-key="${key}"]`)) {
@@ -325,7 +351,12 @@ function drawMap() {
     p.appendChild(t);
 
     p.addEventListener('pointerenter', () => hoverCounty(gid, p));
-    p.addEventListener('click', () => select(gid));
+    p.addEventListener('click', () => {
+      select(gid);
+      // On touch there was no hover to play the county's bird, so the tap has
+      // to do both jobs — otherwise the map is mute.
+      if (!canHover()) hoverCounty(gid, p);
+    });
     p.addEventListener('focus', () => hoverCounty(gid, p));
     p.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(gid); }
@@ -415,9 +446,13 @@ function drawRing() {
   const scale = box.width / proj.width;
   const [cx0, cy0] = centroids[state.gid];
 
-  // Shrink the halo on narrow screens rather than letting it swamp the map.
-  const pip = box.width < 560 ? 38 : 52;
-  const n = Math.min(box.width < 560 ? 8 : RING_N, currentList(state.gid).length);
+  // Shrink the halo on narrow screens rather than letting it swamp the map --
+  // but never below the 44 px touch minimum, and fewer pips instead. The ring
+  // radius is derived from this, so it has to be the single source of truth or
+  // the pips overlap.
+  const pip = box.width >= 560 ? 52 : (canHover() ? 38 : 46);
+  const n = Math.min(box.width < 560 ? (canHover() ? 8 : 6) : RING_N,
+                     currentList(state.gid).length);
   const list = currentList(state.gid).slice(0, n);
   if (!list.length) return;
 
@@ -469,7 +504,7 @@ function drawRing() {
       showPeek(pip, key, sp.name, (sp.sound && sp.sound.tags.join(' · ')) || '');
       AudioKit.play(key);
     });
-    pip.addEventListener('click', () => openSheet(key));
+    pip.addEventListener('click', () => tapBird(key, pip, sp));
     ring.appendChild(pip);
   });
 }
@@ -511,7 +546,7 @@ function drawRail() {
     b.querySelector('.cn').textContent = sp.name;
     b.addEventListener('pointerenter', () => { if (state.hoverSound) AudioKit.play(key); });
     b.addEventListener('focus', () => AudioKit.play(key));   // keyboard = hover
-    b.addEventListener('click', () => openSheet(key));
+    b.addEventListener('click', () => tapBird(key, b, sp));
     frag.appendChild(b);
   }
   rail.appendChild(frag);

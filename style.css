@@ -346,6 +346,13 @@ main { padding: 0 clamp(14px, 3vw, 32px); }
 @media (max-width: 620px) { .sheet-body { grid-template-columns: 1fr; } }
 
 .sheet-body > img { width: 100%; border-radius: 12px; aspect-ratio: 1; object-fit: cover; }
+
+/*
+ * Grid items default to min-width:auto, so this column refuses to shrink below
+ * its widest content -- the 440px-wide spectrogram canvas -- and the sheet
+ * burst out of any viewport under ~470px. min-width:0 lets it actually shrink.
+ */
+.sheet-main { min-width: 0; }
 .sheet-main h3 { margin: 0; font-size: 22px; letter-spacing: -.02em; }
 .sheet-sci { color: var(--muted); font-style: italic; font-size: 13px; }
 .sheet-tags { display: flex; gap: 5px; flex-wrap: wrap; }
@@ -399,4 +406,41 @@ main { padding: 0 clamp(14px, 3vw, 32px); }
 
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; }
+}
+
+/* ---------------- touch ---------------- */
+
+/*
+ * Measured on a 375px viewport: month buttons came out 21x33 px and the halo
+ * pips 38 px — both under the 44 px minimum, and the months were 12-across.
+ * Two rows of six gives real targets without hiding anything.
+ */
+@media (hover: none) {
+  .months {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+  }
+
+  .mbtn { padding: 12px 0; font-size: 13px; }
+
+  .chip { padding: 9px 13px 9px 10px; font-size: 13px; }
+
+  .yearplay { width: 44px; height: 44px; }
+
+  .timeline { align-items: flex-start; }
+
+  /* No hover means no accidental audio; the toggle only confuses here. */
+  .toggle { display: none; }
+
+  /* .pip sizing stays in JS — drawRing() derives the ring radius from it. */
+
+  .hint::after {
+    content: " · tap a county to hear it, tap a bird twice for details";
+  }
+}
+
+@media (max-width: 560px) {
+  .top { gap: 10px 14px; padding: 12px; }
+  .shapes { margin-left: 0; }
+  .tray-head { flex-wrap: wrap; gap: 2px 10px; }
 }
