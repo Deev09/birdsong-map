@@ -4,7 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Birdsong Map — Iowa</title>
-<link rel="stylesheet" href="style.css">
+<!-- ?v= is bumped by build/bump_version.py on every deploy. GitHub Pages caches
+     assets for 10 minutes, so without it a returning visitor can get a fresh
+     index.html against a stale app.js — which shipped a page whose new markup
+     the old script knew nothing about. -->
+<link rel="stylesheet" href="style.css?v=4">
 </head>
 <body>
 
@@ -119,6 +123,6 @@
   </p>
 </footer>
 
-<script src="app.js"></script>
+<script src="app.js?v=4"></script>
 </body>
 </html>
