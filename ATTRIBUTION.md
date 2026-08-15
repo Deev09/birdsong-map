@@ -14,8 +14,8 @@ is MIT and is licensed separately — see [LICENSE](LICENSE).
 
 | License | Clips |
 |---|---|
-| CC BY-SA 3.0 | 88 |
-| CC BY-SA 4.0 | 77 |
+| CC BY-SA 3.0 | 89 |
+| CC BY-SA 4.0 | 76 |
 | Public domain | 27 |
 | CC BY 3.0 | 4 |
 | CC BY 4.0 | 4 |
@@ -52,7 +52,7 @@ only free licenses. That is what makes redistributing edited clips possible at a
 | American Kestrel (*Falco sparverius*) | `amekes.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Falco_sparverius_-_American_Kestrel_XC254589.mp](https://commons.wikimedia.org/wiki/File:Falco_sparverius_-_American_Kestrel_XC254589.mp3) |
 | American Pipit (*Anthus rubescens*) | `amepip.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Anthus_rubescens_-_Buff-bellied_Pipit_XC111042.](https://commons.wikimedia.org/wiki/File:Anthus_rubescens_-_Buff-bellied_Pipit_XC111042.mp3) |
 | American Redstart (*Setophaga ruticilla*) | `amered.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Setophaga_ruticilla_-_American_Redstart_XC10159](https://commons.wikimedia.org/wiki/File:Setophaga_ruticilla_-_American_Redstart_XC101593.mp3) |
-| American Robin (*Turdus migratorius*) | `amerob.mp3` | NPS &amp; MSU Acoustic Atlas/Jennifer Jerrett | Public domain | [File:Yellowstone_sound_library_-_American_Robin_-_00](https://commons.wikimedia.org/wiki/File:Yellowstone_sound_library_-_American_Robin_-_001.mp3) |
+| American Robin (*Turdus migratorius*) | `amerob.mp3` | Doug Hynes | CC BY-SA 4.0 | [File:Turdus_migratorius_-_American_Robin_XC570791.mp](https://commons.wikimedia.org/wiki/File:Turdus_migratorius_-_American_Robin_XC570791.mp3) |
 | American Tree Sparrow (*Spizelloides arborea*) | `amtspa.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Spizelloides_arborea_-_American_Tree_Sparrow_XC](https://commons.wikimedia.org/wiki/File:Spizelloides_arborea_-_American_Tree_Sparrow_XC121042.mp3) |
 | American White Pelican (*Pelecanus erythrorhynchos*) | `amwpel.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Pelecanus_erythrorhynchos_-_American_White_Peli](https://commons.wikimedia.org/wiki/File:Pelecanus_erythrorhynchos_-_American_White_Pelican_XC175257.mp3) |
 | American Woodcock (*Scolopax minor*) | `amewoo.mp3` | Justin Watts | CC BY-SA 4.0 | [File:Scolopax_minor_-_American_Woodcock_XC544586.mp3](https://commons.wikimedia.org/wiki/File:Scolopax_minor_-_American_Woodcock_XC544586.mp3) |
@@ -61,7 +61,7 @@ only free licenses. That is what makes redistributing edited clips possible at a
 | Baltimore Oriole (*Icterus galbula*) | `balori.mp3` | Bird Boy | CC BY-SA 4.0 | [File:Icterus_galbula_-_Baltimore_Oriole_XC507246.mp3](https://commons.wikimedia.org/wiki/File:Icterus_galbula_-_Baltimore_Oriole_XC507246.mp3) |
 | Bank Swallow (*Riparia riparia*) | `banswa.mp3` | Pascal Christe | CC BY-SA 4.0 | [File:Riparia_riparia_-_Sand_Martin_XC487832.mp3](https://commons.wikimedia.org/wiki/File:Riparia_riparia_-_Sand_Martin_XC487832.mp3) |
 | Barn Swallow (*Hirundo rustica*) | `barswa.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Hirundo_rustica_-_Barn_Swallow_-_XC83449.ogg](https://commons.wikimedia.org/wiki/File:Hirundo_rustica_-_Barn_Swallow_-_XC83449.ogg) |
-| Barred Owl (*Strix varia*) | `brdowl.mp3` | Michael &amp; Katie LaTour | CC BY-SA 4.0 | [File:Strix_varia_-_Barred_Owl_XC446889.mp3](https://commons.wikimedia.org/wiki/File:Strix_varia_-_Barred_Owl_XC446889.mp3) |
+| Barred Owl (*Strix varia*) | `brdowl.mp3` | National Park Service | Public domain | [File:Barred_Owl,_Yellowstone_National_Park.oga](https://commons.wikimedia.org/wiki/File:Barred_Owl,_Yellowstone_National_Park.oga) |
 | Bell's Vireo (*Vireo bellii*) | `belvir.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Vireo_bellii_-_Bell's_Vireo_XC102965.mp3](https://commons.wikimedia.org/wiki/File:Vireo_bellii_-_Bell%27s_Vireo_XC102965.mp3) |
 | Belted Kingfisher (*Megaceryle alcyon*) | `belkin1.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Megaceryle_alcyon_-_Belted_Kingfisher_XC132873.](https://commons.wikimedia.org/wiki/File:Megaceryle_alcyon_-_Belted_Kingfisher_XC132873.ogg) |
 | Black Tern (*Chlidonias niger*) | `blkter.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Chlidonias_niger_-_Black_Tern_XC428426.mp3](https://commons.wikimedia.org/wiki/File:Chlidonias_niger_-_Black_Tern_XC428426.mp3) |
@@ -164,7 +164,7 @@ only free licenses. That is what makes redistributing edited clips possible at a
 | Mute Swan (*Cygnus olor*) | `mutswa.mp3` | Joost van Bruggen | CC BY-SA 4.0 | [File:Cygnus_olor_-_Mute_Swan_XC434964.mp3](https://commons.wikimedia.org/wiki/File:Cygnus_olor_-_Mute_Swan_XC434964.mp3) |
 | Nashville Warbler (*Leiothlypis ruficapilla*) | `naswar.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Leiothlypis_ruficapilla_-_Nashville_Warbler_XC2](https://commons.wikimedia.org/wiki/File:Leiothlypis_ruficapilla_-_Nashville_Warbler_XC243419.mp3) |
 | Northern Bobwhite (*Colinus virginianus*) | `norbob.mp3` | G. McGrane | Public domain | [File:Bobwhite.ogg](https://commons.wikimedia.org/wiki/File:Bobwhite.ogg) |
-| Northern Cardinal (*Cardinalis cardinalis*) | `norcar.mp3` | Eric B | CC BY-SA 4.0 | [File:Cardinalis_cardinalis_-_Northern_Cardinal_XC569](https://commons.wikimedia.org/wiki/File:Cardinalis_cardinalis_-_Northern_Cardinal_XC569289.mp3) |
+| Northern Cardinal (*Cardinalis cardinalis*) | `norcar.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Cardinalis_cardinalis_-_Northern_Cardinal_XC775](https://commons.wikimedia.org/wiki/File:Cardinalis_cardinalis_-_Northern_Cardinal_XC77572.mp3) |
 | Northern Flicker (*Colaptes auratus*) | `norfli.mp3` | Leonardo Guzman Hernandez | CC BY-SA 4.0 | [File:Colaptes_auratus_-_Northern_Flicker_XC389891.mp](https://commons.wikimedia.org/wiki/File:Colaptes_auratus_-_Northern_Flicker_XC389891.mp3) |
 | Northern House Wren (*Troglodytes aedon*) | `houwre.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Troglodytes_aedon_-_House_Wren_XC134864.ogg](https://commons.wikimedia.org/wiki/File:Troglodytes_aedon_-_House_Wren_XC134864.ogg) |
 | Northern Parula (*Setophaga americana*) | `norpar.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Setophaga_americana_-_Northern_Parula_-_XC77878](https://commons.wikimedia.org/wiki/File:Setophaga_americana_-_Northern_Parula_-_XC77878.ogg) |

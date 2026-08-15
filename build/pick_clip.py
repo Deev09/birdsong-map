@@ -32,13 +32,20 @@ import tempfile
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-from audio import CLIPS, DATA, classify, decode, features, fetch, log  # noqa: E402
+from audio import (CLIPS, DATA, best_window, classify, decode,  # noqa: E402
+                   features, fetch, log)
 from fetch_data import commons_fileinfo, get, valid_audio_file  # noqa: E402
 
 # species -> the tag its best-known vocalisation should produce
+#
+# On American Robin: measured across the FULL recordings none of the 14 Commons
+# takes reads as a whistle — but the 6 s window that actually ships does, once
+# the cleanest source is chosen (flatness 0.128 whole-file -> 0.064 windowed).
+# The lesson was that the audition has to measure the same audio the pipeline
+# ships, not the raw file.
 WANT = {
     "Strix varia": "hoot",             # "who cooks for you"
-    "Turdus migratorius": "whistle",   # caroling "cheerily, cheer up"
+    "Turdus migratorius": "whistle",   # "cheerily, cheer-up, cheerio"
     "Bubo virginianus": "hoot",
     "Zenaida macroura": "hoot",        # mournful coo
     "Cardinalis cardinalis": "whistle",  # "birdy birdy birdy"
@@ -50,7 +57,10 @@ WANT = {
 }
 
 
-def candidates(sci, common, limit=12):
+def candidates(sci, common, limit=20):
+    # Well-recorded species have more than a dozen takes on Commons and the
+    # cleanest is not near the top: American Robin's best (flatness 0.128) was
+    # the fourteenth result, outside an earlier limit of 12.
     d = get("https://commons.wikimedia.org/w/api.php", {
         "action": "query", "format": "json", "list": "search",
         "srnamespace": 6, "srsearch": f'"{sci}" filetype:audio', "srlimit": limit,
@@ -64,14 +74,23 @@ def candidates(sci, common, limit=12):
 
 
 def audition(url, tmp, clip_secs=6.0):
-    """Measure a candidate without keeping it."""
+    """
+    Measure the candidate exactly as it would ship.
+
+    Measuring the whole file is misleading: audio.py ships only the densest
+    ~6 s window, which is cleaner and more tonal than the full recording. On
+    American Robin the full file measured flatness 0.128 ("chatter") while the
+    window it would actually ship measured 0.064 ("whistle"), so the picker and
+    the pipeline disagreed and would have fought each other on every rerun.
+    """
     path = os.path.join(tmp, "cand" + os.path.splitext(url.split("?")[0])[1][:6])
     fetch(url, path)
     x = decode(path)
     os.remove(path)
     if len(x) < 22050 // 2:
         return None
-    f = features(x)
+    start, want = best_window(x, clip_secs)
+    f = features(x[start:start + want])
     if not f:
         return None
     f["tags"] = classify(f)
@@ -103,26 +122,30 @@ def main():
             info = commons_fileinfo(set(names))
             log(f"  ...  {sp['name']:<24}auditioning {len(names)} candidates (want '{want}', have '{','.join(cur)}')")
 
-            best = None
+            # Audition all of them, then take the CLEANEST match rather than the
+            # first. Flatness doubles as a recording-quality proxy: wind, traffic
+            # and cicadas all push it up, so the lowest-flatness match is both
+            # the most tonal and the least polluted take. Taking the first match
+            # left American Robin on the harshest of its fourteen recordings.
+            scored = []
             for fname in names:
                 i = info.get(fname)
                 if not i:
                     continue
                 try:
                     f = audition(i["url"], tmp)
-                except Exception as e:  # noqa: BLE001
+                except Exception:  # noqa: BLE001
                     continue
-                if not f:
-                    continue
-                if want in f["tags"]:
-                    best = (fname, i, f)
-                    break
+                if f and want in f["tags"]:
+                    scored.append((f["flatness"], fname, i, f))
 
-            if best:
-                fname, i, f = best
+            if scored:
+                scored.sort(key=lambda t: t[0])
+                _, fname, i, f = scored[0]
                 picks[key] = (fname, i)
-                log(f"  FIX  {sp['name']:<24}-> {fname[:44]}  {','.join(f['tags'])} "
-                    f"(cent={f['centroid']}, flat={f['flatness']})")
+                log(f"  FIX  {sp['name']:<24}-> {fname[:42]}  {','.join(f['tags'])} "
+                    f"(cent={f['centroid']}, flat={f['flatness']}, "
+                    f"best of {len(scored)} matching)")
             else:
                 log(f"  --   {sp['name']:<24}no candidate produced '{want}' — leaving as is")
 

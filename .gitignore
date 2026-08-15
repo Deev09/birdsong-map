@@ -7,3 +7,6 @@ build/__pycache__/
 
 # local preview config (absolute paths, machine-specific)
 .claude/
+
+# xeno-canto API key — never commit
+build/.xc_key
