@@ -197,6 +197,8 @@ def main():
     ap.add_argument("--check", action="store_true", help="verify the key and exit")
     ap.add_argument("--species", help="scientific name, e.g. \"Turdus migratorius\"")
     ap.add_argument("--all", action="store_true", help="every species with audio")
+    ap.add_argument("--unverified", action="store_true",
+                    help="only species BirdNET could not confirm (needs verification.json)")
     ap.add_argument("--apply", action="store_true", help="write changes")
     ap.add_argument("--clip", type=float, default=6.0)
     args = ap.parse_args()
@@ -218,10 +220,29 @@ def main():
             log(f"{args.species} is not in the dataset")
             return 1
         targets = [args.species]
+    elif args.unverified:
+        # Target the clips an independent classifier could not confirm. These
+        # are where better provenance actually buys something; the rest are
+        # already corroborated, and swapping them risks regression for nothing.
+        vpath = os.path.join(DATA, "verification.json")
+        if not os.path.exists(vpath):
+            log("run build/verify_audio.py first")
+            return 1
+        # NOT "CONFUSABLE". That status means BirdNET named a known
+        # confusion partner — Spotted Owl for Barred Owl, sister species that
+        # hybridise — which verify_audio.py deliberately treats as weak
+        # evidence, not error. Including it here replaced a carefully chosen
+        # Barred Owl hoot (765 Hz, flatness 0.001) with a "call, song"
+        # recording that no longer reads as a hoot at all, undoing an earlier
+        # fix. Only genuinely unconfirmed clips belong in this queue.
+        bad = {v["name"] for v in json.load(open(vpath))
+               if v["status"] in ("ABSENT", "NO-BIRD")}
+        targets = sorted(v["sci"] for v in species.values() if v["name"] in bad)
+        log(f"{len(targets)} species BirdNET could not confirm")
     elif args.all:
         targets = sorted(by_sci)
     else:
-        log("give --species NAME, or --all")
+        log("give --species NAME, --unverified, or --all")
         return 1
 
     picks = {}

@@ -1,12 +1,5 @@
 [
  {
-  "name": "Virginia Rail",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Musk Lorikeet 0.08"
- },
- {
   "name": "Hen Harrier",
   "status": "ABSENT",
   "own_conf": 0.0,
@@ -14,42 +7,7 @@
   "birdnet_top": "Puna Miner 0.27"
  },
  {
-  "name": "Broad-winged Hawk",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Killdeer 0.93"
- },
- {
-  "name": "Little Blue Heron",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Boat-tailed Grackle 0.36"
- },
- {
-  "name": "Semipalmated Sandpiper",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Scale-throated Earthcreeper 0.10"
- },
- {
-  "name": "Spotted Sandpiper",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Solitary Sandpiper 0.98"
- },
- {
-  "name": "Wilson's Snipe",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Hudsonian Godwit 0.77"
- },
- {
-  "name": "Phalacrocorax auritus",
+  "name": "Double-crested Cormorant",
   "status": "ABSENT",
   "own_conf": 0.0,
   "rank": 0,
@@ -63,18 +21,11 @@
   "birdnet_top": "Fiji Bush Warbler 0.10"
  },
  {
-  "name": "Regulus calendula",
+  "name": "Eastern Screech-Owl",
   "status": "ABSENT",
   "own_conf": 0.0,
   "rank": 0,
-  "birdnet_top": "Ruby-crowned Kinglet 0.99"
- },
- {
-  "name": "Townsend's Solitaire",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Pine Siskin 0.08"
+  "birdnet_top": "Eastern Towhee 0.93"
  },
  {
   "name": "American White Pelican",
@@ -84,88 +35,11 @@
   "birdnet_top": "Vesper Sparrow 1.00"
  },
  {
-  "name": "Harris's Sparrow",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Eurasian Penduline-Tit 0.26"
- },
- {
   "name": "Tundra Bean-Goose",
   "status": "ABSENT",
   "own_conf": 0.0,
   "rank": 0,
-  "birdnet_top": "Greater White-fronted Goose 1.00"
- },
- {
-  "name": "Purple Finch",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Scarlet-chested Sunbird 0.26"
- },
- {
-  "name": "Northern Shoveler",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Great Crested Grebe 0.12"
- },
- {
-  "name": "Phalacrocorax brasilianus",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Neotropic Cormorant 0.55"
- },
- {
-  "name": "Common Merganser",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Eurasian Coot 0.84"
- },
- {
-  "name": "Sharp-shinned Hawk",
-  "status": "ABSENT",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "American Kestrel 0.99"
- },
- {
-  "name": "Baltimore Oriole",
-  "status": "NO-BIRD",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Human vocal 0.42"
- },
- {
-  "name": "Eastern Screech-Owl",
-  "status": "NO-BIRD",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Engine 0.08"
- },
- {
-  "name": "Northern Pintail",
-  "status": "NO-BIRD",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "(nothing) 0.00"
- },
- {
-  "name": "Red-breasted Merganser",
-  "status": "NO-BIRD",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "Fireworks 0.04"
- },
- {
-  "name": "Snowy Owl",
-  "status": "NO-BIRD",
-  "own_conf": 0.0,
-  "rank": 0,
-  "birdnet_top": "(nothing) 0.00"
+  "birdnet_top": "Caspian Gull 0.69"
  },
  {
   "name": "Barred Owl",
@@ -196,11 +70,25 @@
   "birdnet_top": "Palm Warbler 0.88"
  },
  {
+  "name": "Little Blue Heron",
+  "status": "PRESENT",
+  "own_conf": 0.607,
+  "rank": 2,
+  "birdnet_top": "Northern Waterthrush 0.72"
+ },
+ {
   "name": "Northern Flicker",
   "status": "PRESENT",
   "own_conf": 0.594,
   "rank": 2,
   "birdnet_top": "Gilded Flicker 0.76"
+ },
+ {
+  "name": "Harris's Sparrow",
+  "status": "PRESENT",
+  "own_conf": 0.493,
+  "rank": 2,
+  "birdnet_top": "Golden-crowned Sparrow 0.51"
  },
  {
   "name": "Bald Eagle",
@@ -215,6 +103,13 @@
   "own_conf": 0.202,
   "rank": 3,
   "birdnet_top": "Canada Warbler 0.38"
+ },
+ {
+  "name": "Spotted Sandpiper",
+  "status": "PRESENT",
+  "own_conf": 0.186,
+  "rank": 3,
+  "birdnet_top": "Green Sandpiper 0.38"
  },
  {
   "name": "Lesser Black-backed Gull",
@@ -243,6 +138,13 @@
   "own_conf": 0.113,
   "rank": 2,
   "birdnet_top": "Least Flycatcher 0.79"
+ },
+ {
+  "name": "Snowy Owl",
+  "status": "PRESENT",
+  "own_conf": 0.098,
+  "rank": 5,
+  "birdnet_top": "Rufous-banded Owl 0.20"
  },
  {
   "name": "Wild Turkey",
@@ -385,6 +287,13 @@
   "birdnet_top": "Purple Martin 1.00"
  },
  {
+  "name": "Townsend's Solitaire",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "Townsend's Solitaire 1.00"
+ },
+ {
   "name": "Eastern Kingbird",
   "status": "CONFIRMED",
   "own_conf": 0.999,
@@ -434,6 +343,13 @@
   "birdnet_top": "Bohemian Waxwing 1.00"
  },
  {
+  "name": "Semipalmated Sandpiper",
+  "status": "CONFIRMED",
+  "own_conf": 0.999,
+  "rank": 1,
+  "birdnet_top": "Semipalmated Sandpiper 1.00"
+ },
+ {
   "name": "Sora",
   "status": "CONFIRMED",
   "own_conf": 0.999,
@@ -453,6 +369,13 @@
   "own_conf": 0.998,
   "rank": 1,
   "birdnet_top": "Upland Sandpiper 1.00"
+ },
+ {
+  "name": "Virginia Rail",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Virginia Rail 1.00"
  },
  {
   "name": "Nashville Warbler",
@@ -651,7 +574,7 @@
   "birdnet_top": "White-breasted Nuthatch 0.99"
  },
  {
-  "name": "Sandhill crane",
+  "name": "Sandhill Crane",
   "status": "CONFIRMED",
   "own_conf": 0.993,
   "rank": 1,
@@ -663,6 +586,13 @@
   "own_conf": 0.993,
   "rank": 1,
   "birdnet_top": "House Finch 0.99"
+ },
+ {
+  "name": "Common Merganser",
+  "status": "CONFIRMED",
+  "own_conf": 0.993,
+  "rank": 1,
+  "birdnet_top": "Common Merganser 0.99"
  },
  {
   "name": "Cerulean Warbler",
@@ -817,6 +747,27 @@
   "own_conf": 0.988,
   "rank": 1,
   "birdnet_top": "Swainson's Thrush 0.99"
+ },
+ {
+  "name": "Ruby-crowned Kinglet",
+  "status": "CONFIRMED",
+  "own_conf": 0.988,
+  "rank": 1,
+  "birdnet_top": "Ruby-crowned Kinglet 0.99"
+ },
+ {
+  "name": "Northern Pintail",
+  "status": "CONFIRMED",
+  "own_conf": 0.988,
+  "rank": 1,
+  "birdnet_top": "Northern Pintail 0.99"
+ },
+ {
+  "name": "Wilson's Snipe",
+  "status": "CONFIRMED",
+  "own_conf": 0.988,
+  "rank": 1,
+  "birdnet_top": "Wilson's Snipe 0.99"
  },
  {
   "name": "Common Goldeneye",
@@ -1029,6 +980,13 @@
   "birdnet_top": "Tundra Swan 0.95"
  },
  {
+  "name": "Sharp-shinned Hawk",
+  "status": "CONFIRMED",
+  "own_conf": 0.949,
+  "rank": 1,
+  "birdnet_top": "Sharp-shinned Hawk 0.95"
+ },
+ {
   "name": "Brewer's Blackbird",
   "status": "CONFIRMED",
   "own_conf": 0.943,
@@ -1062,6 +1020,13 @@
   "own_conf": 0.939,
   "rank": 1,
   "birdnet_top": "Great Blue Heron 0.94"
+ },
+ {
+  "name": "Red-breasted Merganser",
+  "status": "CONFIRMED",
+  "own_conf": 0.936,
+  "rank": 1,
+  "birdnet_top": "Red-breasted Merganser 0.94"
  },
  {
   "name": "Cliff Swallow",
@@ -1120,6 +1085,13 @@
   "birdnet_top": "Lapland Longspur 0.91"
  },
  {
+  "name": "Purple Finch",
+  "status": "CONFIRMED",
+  "own_conf": 0.911,
+  "rank": 1,
+  "birdnet_top": "Purple Finch 0.91"
+ },
+ {
   "name": "Dark-eyed Junco",
   "status": "CONFIRMED",
   "own_conf": 0.91,
@@ -1132,6 +1104,13 @@
   "own_conf": 0.909,
   "rank": 1,
   "birdnet_top": "Black-billed Magpie 0.91"
+ },
+ {
+  "name": "Northern Shoveler",
+  "status": "CONFIRMED",
+  "own_conf": 0.908,
+  "rank": 1,
+  "birdnet_top": "Northern Shoveler 0.91"
  },
  {
   "name": "Red-tailed Hawk",
@@ -1174,6 +1153,13 @@
   "own_conf": 0.871,
   "rank": 1,
   "birdnet_top": "Blue Jay 0.87"
+ },
+ {
+  "name": "Baltimore Oriole",
+  "status": "CONFIRMED",
+  "own_conf": 0.861,
+  "rank": 1,
+  "birdnet_top": "Baltimore Oriole 0.86"
  },
  {
   "name": "Red Crossbill",
@@ -1244,6 +1230,13 @@
   "own_conf": 0.794,
   "rank": 1,
   "birdnet_top": "Blue-winged Warbler 0.79"
+ },
+ {
+  "name": "Broad-winged Hawk",
+  "status": "CONFIRMED",
+  "own_conf": 0.783,
+  "rank": 1,
+  "birdnet_top": "Broad-winged Hawk 0.78"
  },
  {
   "name": "European Starling",
@@ -1337,6 +1330,13 @@
   "birdnet_top": "Great Egret 0.60"
  },
  {
+  "name": "Neotropic Cormorant",
+  "status": "CONFIRMED",
+  "own_conf": 0.55,
+  "rank": 1,
+  "birdnet_top": "Neotropic Cormorant 0.55"
+ },
+ {
   "name": "American Coot",
   "status": "CONFIRMED",
   "own_conf": 0.524,
@@ -1393,7 +1393,7 @@
   "birdnet_top": "Greater Yellowlegs 0.26"
  },
  {
-  "name": "Bubulcus ibis",
+  "name": "Western Cattle Egret",
   "status": "CONFIRMED",
   "own_conf": 0.21,
   "rank": 1,
