@@ -3,10 +3,25 @@
 Upgrade audio using xeno-canto — the systematic fix for wrong vocalisations.
 
 Commons has whatever someone happened to upload: often an alarm call, a
-juvenile, or a noisy take, with no way to ask for the song. xeno-canto has ~900K
-recordings WITH the metadata that matters — `type:song` and a quality grade —
-so instead of auditioning whatever exists and hoping, we can ask for the right
-vocalisation directly.
+juvenile, or a noisy take, with no way to ask for the song. xeno-canto has ~1M
+recordings WITH the metadata that matters, so the right vocalisation can be
+requested instead of hoped for.
+
+WHAT THE METADATA DOES AND DOES NOT PROMISE:
+  id?:no      the only ID-trust filter. Excludes questioned, unconfirmed and
+              mystery recordings. NOT applied by default — measured, plain
+              search returns 978 American Robin recordings and id?:no returns
+              974, so disputed IDs are served unless you ask otherwise.
+  q:A         audio clarity ONLY. 513 grade-A recordings currently carry a
+              disputed ID. A loud, clean recording of a misidentified bird is a
+              legitimate grade A.
+  seen:yes    the recordist saw the bird. The best non-acoustic corroboration
+              available — but self-reported by whoever assigned the label.
+
+No corpus-level label-error rate has ever been published for xeno-canto,
+Macaulay, or any bird sound archive, so "identified" means "nobody has
+successfully challenged this", not "verified". That is why every clip still
+goes through build/verify_audio.py afterwards.
 
 This became usable only once the project committed to free-forever: 98.9% of
 xeno-canto is NonCommercial.
@@ -20,6 +35,9 @@ xeno-canto is NonCommercial.
     python3 build/xeno_canto.py --check          # verify the key works
     python3 build/xeno_canto.py --species "Turdus migratorius"
     python3 build/xeno_canto.py --all --apply    # upgrade everything upgradable
+
+Then ALWAYS re-run build/verify_audio.py. Better metadata narrows the risk; it
+does not remove it.
 
 LICENSING — the one hard rule:
 NoDerivatives recordings are skipped outright. We trim to the densest window and
@@ -66,29 +84,73 @@ def usable(rec):
     return "-nd" not in lic
 
 
-def search(sci, key, want_type="song", quality="A", limit=12):
-    """Highest-quality song recordings first."""
-    q = f'sp:"{sci}" q:{quality} type:{want_type} len:4-40'
-    d = get(API, {"query": q, "key": key, "per_page": 100})
-    recs = d.get("recordings") or []
-    out = []
-    for r in recs:
-        if not usable(r):
+def tiers(sci):
+    """
+    Query tiers, strictest first.
+
+    id?:no is the load-bearing filter and the one that is easy to miss. The
+    xeno-canto docs and the founders' paper both say a challenged recording is
+    hidden from search until resolved; measured Aug 2026 that is not true —
+    sp:"turdus migratorius" returns 978 and adding id?:no returns 974. Disputed
+    IDs are served by default. It must be passed explicitly.
+
+    q:A is NOT an identification signal. The scale is defined as "A (highest
+    quality) to E (lowest quality)" purely on audio clarity, and 513 grade-A
+    bird recordings currently carry a disputed ID. It buys a clean clip, never
+    a correct label — so it is relaxed before id?:no ever is.
+
+    lic: is a positive filter because there is no negation operator: ND cannot
+    be excluded, only other licences included. 25.1% of xeno-canto is BY-NC-ND,
+    which forbids the trimmed, normalised clips this project ships.
+    """
+    base = f'sp:"{sci}" grp:birds id?:no type:song lic:BY-NC-SA len:"4-40"'
+    return [
+        # seen:yes = recordist actually saw the bird. Best non-acoustic
+        # corroboration available, and no audio model trained on XC can launder
+        # it. Costs the 20.1% of recordings where the field is blank.
+        ("strict", base + " q:A seen:yes playback:no"),
+        ("relaxed", base + ' q:">C" seen:yes playback:no'),   # >C means A and B only
+        ("loose", base + ' q:">C"'),
+    ]
+
+
+def search(sci, key, limit=12):
+    """Walk the tiers until one yields usable recordings."""
+    for tier, q in tiers(sci):
+        try:
+            d = get(API, {"query": q, "key": key, "per_page": 100})
+        except Exception:  # noqa: BLE001
             continue
-        url = r.get("file")
-        if not url:
-            continue
-        if url.startswith("//"):
-            url = "https:" + url
-        out.append({
-            "id": r.get("id"), "url": url,
-            "by": r.get("rec"), "lic": "https:" + r["lic"] if r["lic"].startswith("//") else r["lic"],
-            "type": r.get("type"), "q": r.get("q"), "len": r.get("length"),
-            "page": f"https://xeno-canto.org/{r.get('id')}",
-        })
-        if len(out) >= limit:
-            break
-    return out
+        out = []
+        for r in d.get("recordings") or []:
+            # Belt and braces: id?:no should already have excluded these, but
+            # the field ships in the payload so there is no reason not to check.
+            if r.get("status") and r["status"] != "identified":
+                continue
+            if not usable(r):
+                continue
+            url = r.get("file")
+            if not url:
+                continue
+            if url.startswith("//"):
+                url = "https:" + url
+            lic = r.get("lic") or ""
+            out.append({
+                "id": r.get("id"), "url": url, "by": r.get("rec"),
+                "lic": ("https:" + lic) if lic.startswith("//") else lic,
+                "type": r.get("type"), "q": r.get("q"), "len": r.get("length"),
+                "seen": r.get("bird-seen") or r.get("animal-seen"),
+                # 'also' lists background species. Under-reported by xeno-canto's
+                # own admission, so an empty list is weak evidence of a clean
+                # recording — used only to sort, never to filter.
+                "also": [a for a in (r.get("also") or []) if a],
+                "tier": tier,
+                "page": f"https://xeno-canto.org/{r.get('id')}",
+            })
+        if out:
+            out.sort(key=lambda r: len(r["also"]))   # cleanest first
+            return out[:limit]
+    return []
 
 
 def audition(url, tmp, clip_secs=6.0):
@@ -115,13 +177,14 @@ def check(key):
         log("No key. Set XC_API_KEY or write build/.xc_key — see the docstring.")
         return 1
     try:
-        d = get(API, {"query": 'sp:"Turdus migratorius" q:A type:song', "key": key, "per_page": 5})
+        _, strict = tiers("Turdus migratorius")[0]
+        d = get(API, {"query": strict, "key": key, "per_page": 5})
     except Exception as e:  # noqa: BLE001
         log(f"Key rejected or API unreachable: {e}")
         log("A 401 means the key is wrong; 403 can mean it is not activated yet.")
         return 1
     recs = d.get("recordings") or []
-    log(f"key OK — {d.get('numRecordings', '?')} American Robin song recordings available")
+    log(f"key OK — {d.get('numRecordings', '?')} American Robin recordings pass the strict query")
     for r in recs[:3]:
         log(f"   XC{r.get('id')}  q={r.get('q')}  {r.get('length')}  {r.get('lic')}")
     n_nd = sum(1 for r in recs if not usable(r))
