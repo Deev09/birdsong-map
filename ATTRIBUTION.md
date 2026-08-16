@@ -14,9 +14,9 @@ is MIT and is licensed separately — see [LICENSE](LICENSE).
 
 | License | Clips |
 |---|---|
-| CC BY-SA 3.0 | 89 |
+| CC BY-SA 3.0 | 90 |
 | CC BY-SA 4.0 | 76 |
-| Public domain | 27 |
+| Public domain | 26 |
 | CC BY 3.0 | 4 |
 | CC BY 4.0 | 4 |
 | CC BY 2.5 | 2 |
@@ -48,7 +48,7 @@ only free licenses. That is what makes redistributing edited clips possible at a
 | Alder Flycatcher (*Empidonax alnorum*) | `aldfly.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Empidonax_alnorum_-_Alder_Flycatcher_XC138639.o](https://commons.wikimedia.org/wiki/File:Empidonax_alnorum_-_Alder_Flycatcher_XC138639.ogg) |
 | American Coot (*Fulica americana*) | `y00475.mp3` | NPS &amp; MSU Acoustic Atlas/Jennifer Jerrett | Public domain | [File:Yellowstone_sound_library_-_American_Coots_-_00](https://commons.wikimedia.org/wiki/File:Yellowstone_sound_library_-_American_Coots_-_001.mp3) |
 | American Crow (*Corvus brachyrhynchos*) | `amecro.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Corvus_brachyrhynchos_-_American_Crow_XC115429.](https://commons.wikimedia.org/wiki/File:Corvus_brachyrhynchos_-_American_Crow_XC115429.mp3) |
-| American Goldfinch (*Spinus tristis*) | `amegfi.mp3` | Fish and Wildlife Service | Public domain | [File:30goldfinch.ogg](https://commons.wikimedia.org/wiki/File:30goldfinch.ogg) |
+| American Goldfinch (*Spinus tristis*) | `amegfi.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Spinus_tristis_-_American_Goldfinch_XC127600.og](https://commons.wikimedia.org/wiki/File:Spinus_tristis_-_American_Goldfinch_XC127600.ogg) |
 | American Kestrel (*Falco sparverius*) | `amekes.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Falco_sparverius_-_American_Kestrel_XC254589.mp](https://commons.wikimedia.org/wiki/File:Falco_sparverius_-_American_Kestrel_XC254589.mp3) |
 | American Pipit (*Anthus rubescens*) | `amepip.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Anthus_rubescens_-_Buff-bellied_Pipit_XC111042.](https://commons.wikimedia.org/wiki/File:Anthus_rubescens_-_Buff-bellied_Pipit_XC111042.mp3) |
 | American Redstart (*Setophaga ruticilla*) | `amered.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Setophaga_ruticilla_-_American_Redstart_XC10159](https://commons.wikimedia.org/wiki/File:Setophaga_ruticilla_-_American_Redstart_XC101593.mp3) |
@@ -78,7 +78,7 @@ only free licenses. That is what makes redistributing edited clips possible at a
 | Bohemian Waxwing (*Bombycilla garrulus*) | `bohwax.mp3` | Bushman | CC BY-SA 3.0 | [File:Bombycilla_garrulus_-_Bohemian_Waxwing_XC132884](https://commons.wikimedia.org/wiki/File:Bombycilla_garrulus_-_Bohemian_Waxwing_XC132884.ogg) |
 | Bonaparte's Gull (*Chroicocephalus philadelphia*) | `bongul.mp3` | Tony Phillips | CC BY 3.0 | [File:Chroicocephalus_philadelphia.ogg](https://commons.wikimedia.org/wiki/File:Chroicocephalus_philadelphia.ogg) |
 | Brewer's Blackbird (*Euphagus cyanocephalus*) | `brebla.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Euphagus_cyanocephalus_-_Brewer's_Blackbird_-_X](https://commons.wikimedia.org/wiki/File:Euphagus_cyanocephalus_-_Brewer%27s_Blackbird_-_XC104521.ogg) |
-| Broad-winged Hawk (*Buteo platypterus*) | `brwhaw.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Buteo_platypterus_-_Broad-winged_Hawk_XC241108.](https://commons.wikimedia.org/wiki/File:Buteo_platypterus_-_Broad-winged_Hawk_XC241108.mp3) |
+| Broad-winged Hawk (*Buteo platypterus*) | `brwhaw.mp3` | Niels Krabbe | CC BY-SA 4.0 | [File:Buteo_platypterus_-_Broad-winged_Hawk_XC250549.](https://commons.wikimedia.org/wiki/File:Buteo_platypterus_-_Broad-winged_Hawk_XC250549.mp3) |
 | Brown Creeper (*Certhia americana*) | `brncre.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Certhia_americana_-_Brown_Creeper_XC91412.mp3](https://commons.wikimedia.org/wiki/File:Certhia_americana_-_Brown_Creeper_XC91412.mp3) |
 | Brown Thrasher (*Toxostoma rufum*) | `brnthr.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Toxostoma_rufum_-_Brown_Thrasher_XC320485.mp3](https://commons.wikimedia.org/wiki/File:Toxostoma_rufum_-_Brown_Thrasher_XC320485.mp3) |
 | Brown-headed Cowbird (*Molothrus ater*) | `bnhcow.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Molothrus_ater_-_Brown-headed_Cowbird_XC99548.m](https://commons.wikimedia.org/wiki/File:Molothrus_ater_-_Brown-headed_Cowbird_XC99548.mp3) |
@@ -103,17 +103,17 @@ only free licenses. That is what makes redistributing edited clips possible at a
 | Dickcissel (*Spiza americana*) | `dickci.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Spiza_americana_-_Dickcissel_-_XC82762.ogg](https://commons.wikimedia.org/wiki/File:Spiza_americana_-_Dickcissel_-_XC82762.ogg) |
 | Downy Woodpecker (*Dryobates pubescens*) | `dowwoo.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Dryobates_pubescens_-_Downy_Woodpecker_XC134879](https://commons.wikimedia.org/wiki/File:Dryobates_pubescens_-_Downy_Woodpecker_XC134879.mp3) |
 | Dunlin (*Calidris alpina*) | `dunlin.mp3` | see source page | CC BY 4.0 | [File:Dunlin_(Calidris_alpina)_(W_CALIDRIS_ALPINA_R1_](https://commons.wikimedia.org/wiki/File:Dunlin_(Calidris_alpina)_(W_CALIDRIS_ALPINA_R1_C13).ogg) |
-| Eastern Bluebird (*Sialia sialis*) | `easblu.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Sialia_sialis_-_Eastern_Bluebird_-_XC100032.ogg](https://commons.wikimedia.org/wiki/File:Sialia_sialis_-_Eastern_Bluebird_-_XC100032.ogg) |
-| Eastern Kingbird (*Tyrannus tyrannus*) | `easkin.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Tyrannus_tyrannus_-_Eastern_Kingbird_XC78870.mp](https://commons.wikimedia.org/wiki/File:Tyrannus_tyrannus_-_Eastern_Kingbird_XC78870.mp3) |
+| Eastern Bluebird (*Sialia sialis*) | `easblu.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Sialia_sialis_-_Eastern_Bluebird_XC79976.mp3](https://commons.wikimedia.org/wiki/File:Sialia_sialis_-_Eastern_Bluebird_XC79976.mp3) |
+| Eastern Kingbird (*Tyrannus tyrannus*) | `easkin.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Tyrannus_tyrannus_-_Eastern_Kingbird_XC134870.o](https://commons.wikimedia.org/wiki/File:Tyrannus_tyrannus_-_Eastern_Kingbird_XC134870.ogg) |
 | Eastern Meadowlark (*Sturnella magna*) | `easmea.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Sturnella_magna_-_Eastern_Meadowlark_XC320477.m](https://commons.wikimedia.org/wiki/File:Sturnella_magna_-_Eastern_Meadowlark_XC320477.mp3) |
-| Eastern Phoebe (*Sayornis phoebe*) | `easpho.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Sayornis_phoebe_-_Eastern_Phoebe_XC477562.mp3](https://commons.wikimedia.org/wiki/File:Sayornis_phoebe_-_Eastern_Phoebe_XC477562.mp3) |
+| Eastern Phoebe (*Sayornis phoebe*) | `easpho.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Sayornis_phoebe_-_Eastern_Phoebe_XC99547.mp3](https://commons.wikimedia.org/wiki/File:Sayornis_phoebe_-_Eastern_Phoebe_XC99547.mp3) |
 | Eastern Screech-Owl (*Megascops asio*) | `easowl1.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Megascops_asio_-_Eastern_Screech_Owl_XC75829.mp](https://commons.wikimedia.org/wiki/File:Megascops_asio_-_Eastern_Screech_Owl_XC75829.mp3) |
 | Eastern Towhee (*Pipilo erythrophthalmus*) | `eastow.mp3` | No machine-readable author provided. Mdf assumed (based on copyright claims). | CC BY-SA 3.0 | [File:Pipilo-erythrophthalmus-001.ogg](https://commons.wikimedia.org/wiki/File:Pipilo-erythrophthalmus-001.ogg) |
 | Eastern Warbling Vireo (*Vireo gilvus*) | `eawvir1.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Vireo_gilvus_-_Warbling_Vireo_XC102968.mp3](https://commons.wikimedia.org/wiki/File:Vireo_gilvus_-_Warbling_Vireo_XC102968.mp3) |
 | Eastern Wood-Pewee (*Contopus virens*) | `eawpew.mp3` | No machine-readable author provided. Mdf assumed (based on copyright claims). | CC BY-SA 3.0 | [File:Contopus-virens-001.ogg](https://commons.wikimedia.org/wiki/File:Contopus-virens-001.ogg) |
 | Eurasian Collared-Dove (*Streptopelia decaocto*) | `eucdov.mp3` | Warper up | CC BY-SA 3.0 | [File:Кольчатая_Горлица.ogg](https://commons.wikimedia.org/wiki/File:%D0%9A%D0%BE%D0%BB%D1%8C%D1%87%D0%B0%D1%82%D0%B0%D1%8F_%D0%93%D0%BE%D1%80%D0%BB%D0%B8%D1%86%D0%B0.ogg) |
 | Eurasian Tree Sparrow (*Passer montanus*) | `eutspa.mp3` | Vladimir Yu. Arkhipov, Arkhivov | CC BY-SA 3.0 | [File:Passer_montanus.ogg](https://commons.wikimedia.org/wiki/File:Passer_montanus.ogg) |
-| European Starling (*Sturnus vulgaris*) | `eursta.mp3` | see source page | CC BY-SA 4.0 | [File:Common_Starling_(Sturnus_vulgaris)_(W1CDR000143](https://commons.wikimedia.org/wiki/File:Common_Starling_(Sturnus_vulgaris)_(W1CDR0001431_BD8).ogg) |
+| European Starling (*Sturnus vulgaris*) | `eursta.mp3` | Marie-Lan Taÿ Pamart | CC BY-SA 4.0 | [File:Sturnus_vulgaris_-_Common_Starling_XC493403.mp3](https://commons.wikimedia.org/wiki/File:Sturnus_vulgaris_-_Common_Starling_XC493403.mp3) |
 | Evening Grosbeak (*Hesperiphona vespertina*) | `evegro.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Hesperiphona_vespertina_-_Evening_Grosbeak_-_XC](https://commons.wikimedia.org/wiki/File:Hesperiphona_vespertina_-_Evening_Grosbeak_-_XC77883.ogg) |
 | Field Sparrow (*Spizella pusilla*) | `fiespa.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Spizella_pusilla_-_Field_Sparrow_XC179707.mp3](https://commons.wikimedia.org/wiki/File:Spizella_pusilla_-_Field_Sparrow_XC179707.mp3) |
 | Forster's Tern (*Sterna forsteri*) | `forter.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Sterna_forsteri_-_Forster's_Tern_XC135967.ogg](https://commons.wikimedia.org/wiki/File:Sterna_forsteri_-_Forster%27s_Tern_XC135967.ogg) |
@@ -186,7 +186,7 @@ only free licenses. That is what makes redistributing edited clips possible at a
 | Red Crossbill (*Loxia curvirostra*) | `redcro.mp3` | Anthony Wetherhill | CC BY-SA 4.0 | [File:Loxia_curvirostra_-_Red_Crossbill_XC468917.mp3](https://commons.wikimedia.org/wiki/File:Loxia_curvirostra_-_Red_Crossbill_XC468917.mp3) |
 | Red-bellied Woodpecker (*Melanerpes carolinus*) | `rebwoo.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Melanerpes_carolinus_-_Red-bellied_Woodpecker_X](https://commons.wikimedia.org/wiki/File:Melanerpes_carolinus_-_Red-bellied_Woodpecker_XC128005.ogg) |
 | Red-breasted Merganser (*Mergus serrator*) | `rebmer.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Mergus_serrator_-_Red-breasted_Merganser_XC1393](https://commons.wikimedia.org/wiki/File:Mergus_serrator_-_Red-breasted_Merganser_XC139389.ogg) |
-| Red-breasted Nuthatch (*Sitta canadensis*) | `rebnut.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Sitta_canadensis_-_Red-breasted_Nuthatch_-_XC10](https://commons.wikimedia.org/wiki/File:Sitta_canadensis_-_Red-breasted_Nuthatch_-_XC104516.ogg) |
+| Red-breasted Nuthatch (*Sitta canadensis*) | `rebnut.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Sitta_canadensis_-_Red-breasted_Nuthatch_XC1045](https://commons.wikimedia.org/wiki/File:Sitta_canadensis_-_Red-breasted_Nuthatch_XC104518.mp3) |
 | Red-eyed Vireo (*Vireo olivaceus*) | `reevir1.mp3` | Jonathan Jongsma | CC BY-SA 4.0 | [File:Roodoogvireo.ogg](https://commons.wikimedia.org/wiki/File:Roodoogvireo.ogg) |
 | Red-headed Woodpecker (*Melanerpes erythrocephalus*) | `rehwoo.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Melanerpes_erythrocephalus_-_Red-headed_Woodpec](https://commons.wikimedia.org/wiki/File:Melanerpes_erythrocephalus_-_Red-headed_Woodpecker_XC254604.mp3) |
 | Red-shouldered Hawk (*Buteo lineatus*) | `reshaw.mp3` | G. McGrane | Public domain | [File:Red-shouldered_Hawk.ogg](https://commons.wikimedia.org/wiki/File:Red-shouldered_Hawk.ogg) |
@@ -224,7 +224,7 @@ only free licenses. That is what makes redistributing edited clips possible at a
 | Tundra Swan (*Cygnus columbianus*) | `tunswa.mp3` | see source page | CC BY-SA 4.0 | [File:Bewick's_Swan_(Cygnus_columbianus)_(W1CDR000138](https://commons.wikimedia.org/wiki/File:Bewick%27s_Swan_(Cygnus_columbianus)_(W1CDR0001383_BD2).ogg) |
 | Turkey Vulture (*Cathartes aura*) | `turvul.mp3` | G. McGrane | Public domain | [File:Turkey_Vulture.ogg](https://commons.wikimedia.org/wiki/File:Turkey_Vulture.ogg) |
 | Upland Sandpiper (*Bartramia longicauda*) | `uplsan.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Bartramia_longicauda_-_Upland_Sandpiper_XC10453](https://commons.wikimedia.org/wiki/File:Bartramia_longicauda_-_Upland_Sandpiper_XC104531.mp3) |
-| Vesper Sparrow (*Pooecetes gramineus*) | `vesspa.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Pooecetes_gramineus_-_Vesper_Sparrow_XC102962.m](https://commons.wikimedia.org/wiki/File:Pooecetes_gramineus_-_Vesper_Sparrow_XC102962.mp3) |
+| Vesper Sparrow (*Pooecetes gramineus*) | `vesspa.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Pooecetes_gramineus_-_Vesper_Sparrow_XC175259.m](https://commons.wikimedia.org/wiki/File:Pooecetes_gramineus_-_Vesper_Sparrow_XC175259.mp3) |
 | Virginia Rail (*Rallus limicola*) | `virrai.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Rallus_limicola_-_Virginia_Rail_XC87071.ogg](https://commons.wikimedia.org/wiki/File:Rallus_limicola_-_Virginia_Rail_XC87071.ogg) |
 | Western Meadowlark (*Sturnella neglecta*) | `wesmea.mp3` | Peter Wilton | CC BY-SA 4.0 | [File:Sturnella_neglecta_-_Western_Meadowlark_XC55099](https://commons.wikimedia.org/wiki/File:Sturnella_neglecta_-_Western_Meadowlark_XC550994.mp3) |
 | White-breasted Nuthatch (*Sitta carolinensis*) | `whbnut.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Sitta_carolinensis_-_White-breasted_Nuthatch_XC](https://commons.wikimedia.org/wiki/File:Sitta_carolinensis_-_White-breasted_Nuthatch_XC86754.mp3) |

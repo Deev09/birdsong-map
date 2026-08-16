@@ -658,7 +658,14 @@ function openSheet(key) {
   if (sp.photo) { img.src = sp.photo.url; img.style.display = ''; } else { img.style.display = 'none'; }
   document.getElementById('sheetName').textContent = sp.name;
   document.getElementById('sheetSci').textContent = sp.sci;
-  document.getElementById('sheetTags').innerHTML = tagHtml(sp);
+  // Say so when an independent classifier could not confirm the recording.
+  // Quietly shipping an unverified clip in an identification tool is the one
+  // thing this project should never do.
+  document.getElementById('sheetTags').innerHTML = tagHtml(sp)
+    + (sp.verified === false
+      ? '<span class="tag unver" title="An independent classifier (BirdNET) could not'
+        + ' confirm this recording. Treat it with caution.">unverified recording</span>'
+      : '');
   document.getElementById('sheetBlurb').textContent = sp.blurb || '';
   drawSpec(document.getElementById('sheetSpec'), key);
 

@@ -1,0 +1,1430 @@
+[
+ {
+  "name": "Virginia Rail",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Musk Lorikeet 0.08"
+ },
+ {
+  "name": "Hen Harrier",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Puna Miner 0.27"
+ },
+ {
+  "name": "Broad-winged Hawk",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Killdeer 0.93"
+ },
+ {
+  "name": "Little Blue Heron",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Boat-tailed Grackle 0.36"
+ },
+ {
+  "name": "Semipalmated Sandpiper",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Scale-throated Earthcreeper 0.10"
+ },
+ {
+  "name": "Spotted Sandpiper",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Solitary Sandpiper 0.98"
+ },
+ {
+  "name": "Wilson's Snipe",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Hudsonian Godwit 0.77"
+ },
+ {
+  "name": "Phalacrocorax auritus",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "White-breasted Waterhen 0.11"
+ },
+ {
+  "name": "Turkey Vulture",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Fiji Bush Warbler 0.10"
+ },
+ {
+  "name": "Regulus calendula",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Ruby-crowned Kinglet 0.99"
+ },
+ {
+  "name": "Townsend's Solitaire",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Pine Siskin 0.08"
+ },
+ {
+  "name": "American White Pelican",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Vesper Sparrow 1.00"
+ },
+ {
+  "name": "Harris's Sparrow",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Eurasian Penduline-Tit 0.26"
+ },
+ {
+  "name": "Tundra Bean-Goose",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Greater White-fronted Goose 1.00"
+ },
+ {
+  "name": "Purple Finch",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Scarlet-chested Sunbird 0.26"
+ },
+ {
+  "name": "Northern Shoveler",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Great Crested Grebe 0.12"
+ },
+ {
+  "name": "Phalacrocorax brasilianus",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Neotropic Cormorant 0.55"
+ },
+ {
+  "name": "Common Merganser",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Eurasian Coot 0.84"
+ },
+ {
+  "name": "Sharp-shinned Hawk",
+  "status": "ABSENT",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "American Kestrel 0.99"
+ },
+ {
+  "name": "Baltimore Oriole",
+  "status": "NO-BIRD",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Human vocal 0.42"
+ },
+ {
+  "name": "Eastern Screech-Owl",
+  "status": "NO-BIRD",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Engine 0.08"
+ },
+ {
+  "name": "Northern Pintail",
+  "status": "NO-BIRD",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "(nothing) 0.00"
+ },
+ {
+  "name": "Red-breasted Merganser",
+  "status": "NO-BIRD",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Fireworks 0.04"
+ },
+ {
+  "name": "Snowy Owl",
+  "status": "NO-BIRD",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "(nothing) 0.00"
+ },
+ {
+  "name": "Barred Owl",
+  "status": "CONFUSABLE",
+  "own_conf": 0.0,
+  "rank": 0,
+  "birdnet_top": "Spotted Owl 0.84"
+ },
+ {
+  "name": "Mountain Bluebird",
+  "status": "PRESENT",
+  "own_conf": 0.814,
+  "rank": 2,
+  "birdnet_top": "Willow Flycatcher 0.98"
+ },
+ {
+  "name": "Alder Flycatcher",
+  "status": "PRESENT",
+  "own_conf": 0.697,
+  "rank": 2,
+  "birdnet_top": "Black-throated Green Warbler 0.97"
+ },
+ {
+  "name": "Swamp Sparrow",
+  "status": "PRESENT",
+  "own_conf": 0.608,
+  "rank": 2,
+  "birdnet_top": "Palm Warbler 0.88"
+ },
+ {
+  "name": "Northern Flicker",
+  "status": "PRESENT",
+  "own_conf": 0.594,
+  "rank": 2,
+  "birdnet_top": "Gilded Flicker 0.76"
+ },
+ {
+  "name": "Bald Eagle",
+  "status": "PRESENT",
+  "own_conf": 0.3,
+  "rank": 2,
+  "birdnet_top": "White-tailed Eagle 0.70"
+ },
+ {
+  "name": "Common Yellowthroat",
+  "status": "PRESENT",
+  "own_conf": 0.202,
+  "rank": 3,
+  "birdnet_top": "Canada Warbler 0.38"
+ },
+ {
+  "name": "Lesser Black-backed Gull",
+  "status": "PRESENT",
+  "own_conf": 0.17,
+  "rank": 2,
+  "birdnet_top": "Yellow-legged Gull 0.64"
+ },
+ {
+  "name": "White-throated Sparrow",
+  "status": "PRESENT",
+  "own_conf": 0.125,
+  "rank": 2,
+  "birdnet_top": "Nightingale Wren 0.19"
+ },
+ {
+  "name": "Chipping Sparrow",
+  "status": "PRESENT",
+  "own_conf": 0.121,
+  "rank": 4,
+  "birdnet_top": "Black-chinned Sparrow 0.52"
+ },
+ {
+  "name": "Ovenbird",
+  "status": "PRESENT",
+  "own_conf": 0.113,
+  "rank": 2,
+  "birdnet_top": "Least Flycatcher 0.79"
+ },
+ {
+  "name": "Wild Turkey",
+  "status": "PRESENT",
+  "own_conf": 0.093,
+  "rank": 2,
+  "birdnet_top": "Henslow's Sparrow 0.61"
+ },
+ {
+  "name": "Orchard Oriole",
+  "status": "PRESENT",
+  "own_conf": 0.087,
+  "rank": 4,
+  "birdnet_top": "Eastern Kingbird 0.50"
+ },
+ {
+  "name": "Mangrove Yellow Warbler",
+  "status": "PRESENT",
+  "own_conf": 0.085,
+  "rank": 4,
+  "birdnet_top": "Martens's Warbler 0.19"
+ },
+ {
+  "name": "Fox Sparrow",
+  "status": "PRESENT",
+  "own_conf": 0.08,
+  "rank": 3,
+  "birdnet_top": "Belted Kingfisher 0.89"
+ },
+ {
+  "name": "Gray Catbird",
+  "status": "PRESENT",
+  "own_conf": 0.051,
+  "rank": 5,
+  "birdnet_top": "Silvereye 0.26"
+ },
+ {
+  "name": "Great Horned Owl",
+  "status": "PRESENT",
+  "own_conf": 0.049,
+  "rank": 3,
+  "birdnet_top": "Engine 0.56"
+ },
+ {
+  "name": "American Goldfinch",
+  "status": "PRESENT",
+  "own_conf": 0.044,
+  "rank": 3,
+  "birdnet_top": "Cetti's Warbler 0.45"
+ },
+ {
+  "name": "Green Heron",
+  "status": "PRESENT",
+  "own_conf": 0.04,
+  "rank": 5,
+  "birdnet_top": "Pied-billed Grebe 0.15"
+ },
+ {
+  "name": "Caspian Tern",
+  "status": "PRESENT",
+  "own_conf": 0.031,
+  "rank": 2,
+  "birdnet_top": "Red-breasted Toucan 0.04"
+ },
+ {
+  "name": "American Woodcock",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "American Woodcock 1.00"
+ },
+ {
+  "name": "Bell's Vireo",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "Bell's Vireo 1.00"
+ },
+ {
+  "name": "Eastern Phoebe",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "Eastern Phoebe 1.00"
+ },
+ {
+  "name": "Gadwall",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "Gadwall 1.00"
+ },
+ {
+  "name": "Henslow's Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "Henslow's Sparrow 1.00"
+ },
+ {
+  "name": "Trumpeter Swan",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "Trumpeter Swan 1.00"
+ },
+ {
+  "name": "Wood Duck",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "Wood Duck 1.00"
+ },
+ {
+  "name": "Black Tern",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "Black Tern 1.00"
+ },
+ {
+  "name": "Red-headed Woodpecker",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "Red-headed Woodpecker 1.00"
+ },
+ {
+  "name": "Long-tailed Duck",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "Long-tailed Duck 1.00"
+ },
+ {
+  "name": "Purple Martin",
+  "status": "CONFIRMED",
+  "own_conf": 1.0,
+  "rank": 1,
+  "birdnet_top": "Purple Martin 1.00"
+ },
+ {
+  "name": "Eastern Kingbird",
+  "status": "CONFIRMED",
+  "own_conf": 0.999,
+  "rank": 1,
+  "birdnet_top": "Eastern Kingbird 1.00"
+ },
+ {
+  "name": "Peregrine Falcon",
+  "status": "CONFIRMED",
+  "own_conf": 0.999,
+  "rank": 1,
+  "birdnet_top": "Peregrine Falcon 1.00"
+ },
+ {
+  "name": "Louisiana Waterthrush",
+  "status": "CONFIRMED",
+  "own_conf": 0.999,
+  "rank": 1,
+  "birdnet_top": "Louisiana Waterthrush 1.00"
+ },
+ {
+  "name": "Limpkin",
+  "status": "CONFIRMED",
+  "own_conf": 0.999,
+  "rank": 1,
+  "birdnet_top": "Limpkin 1.00"
+ },
+ {
+  "name": "Ring-necked Pheasant",
+  "status": "CONFIRMED",
+  "own_conf": 0.999,
+  "rank": 1,
+  "birdnet_top": "Ring-necked Pheasant 1.00"
+ },
+ {
+  "name": "Horned Lark",
+  "status": "CONFIRMED",
+  "own_conf": 0.999,
+  "rank": 1,
+  "birdnet_top": "Horned Lark 1.00"
+ },
+ {
+  "name": "Bohemian Waxwing",
+  "status": "CONFIRMED",
+  "own_conf": 0.999,
+  "rank": 1,
+  "birdnet_top": "Bohemian Waxwing 1.00"
+ },
+ {
+  "name": "Sora",
+  "status": "CONFIRMED",
+  "own_conf": 0.999,
+  "rank": 1,
+  "birdnet_top": "Sora 1.00"
+ },
+ {
+  "name": "Blue-gray Gnatcatcher",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Blue-gray Gnatcatcher 1.00"
+ },
+ {
+  "name": "Upland Sandpiper",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Upland Sandpiper 1.00"
+ },
+ {
+  "name": "Nashville Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Nashville Warbler 1.00"
+ },
+ {
+  "name": "Yellow-throated Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Yellow-throated Warbler 1.00"
+ },
+ {
+  "name": "White-winged Crossbill",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "White-winged Crossbill 1.00"
+ },
+ {
+  "name": "Hairy Woodpecker",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Hairy Woodpecker 1.00"
+ },
+ {
+  "name": "Merlin",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Merlin 1.00"
+ },
+ {
+  "name": "Eastern Warbling Vireo",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Warbling Vireo 1.00"
+ },
+ {
+  "name": "Lark Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Lark Sparrow 1.00"
+ },
+ {
+  "name": "Chestnut-sided Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Chestnut-sided Warbler 1.00"
+ },
+ {
+  "name": "Eastern Towhee",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Eastern Towhee 1.00"
+ },
+ {
+  "name": "Snow Bunting",
+  "status": "CONFIRMED",
+  "own_conf": 0.998,
+  "rank": 1,
+  "birdnet_top": "Snow Bunting 1.00"
+ },
+ {
+  "name": "Redpoll",
+  "status": "CONFIRMED",
+  "own_conf": 0.997,
+  "rank": 1,
+  "birdnet_top": "Common Redpoll 1.00"
+ },
+ {
+  "name": "Lincoln's Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 0.997,
+  "rank": 1,
+  "birdnet_top": "Lincoln's Sparrow 1.00"
+ },
+ {
+  "name": "Red-breasted Nuthatch",
+  "status": "CONFIRMED",
+  "own_conf": 0.997,
+  "rank": 1,
+  "birdnet_top": "Red-breasted Nuthatch 1.00"
+ },
+ {
+  "name": "Tennessee Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.997,
+  "rank": 1,
+  "birdnet_top": "Tennessee Warbler 1.00"
+ },
+ {
+  "name": "American Kestrel",
+  "status": "CONFIRMED",
+  "own_conf": 0.997,
+  "rank": 1,
+  "birdnet_top": "American Kestrel 1.00"
+ },
+ {
+  "name": "Vesper Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 0.997,
+  "rank": 1,
+  "birdnet_top": "Vesper Sparrow 1.00"
+ },
+ {
+  "name": "Evening Grosbeak",
+  "status": "CONFIRMED",
+  "own_conf": 0.996,
+  "rank": 1,
+  "birdnet_top": "Evening Grosbeak 1.00"
+ },
+ {
+  "name": "Bonaparte's Gull",
+  "status": "CONFIRMED",
+  "own_conf": 0.996,
+  "rank": 1,
+  "birdnet_top": "Bonaparte's Gull 1.00"
+ },
+ {
+  "name": "Greater White-fronted Goose",
+  "status": "CONFIRMED",
+  "own_conf": 0.996,
+  "rank": 1,
+  "birdnet_top": "Greater White-fronted Goose 1.00"
+ },
+ {
+  "name": "Tree Swallow",
+  "status": "CONFIRMED",
+  "own_conf": 0.996,
+  "rank": 1,
+  "birdnet_top": "Tree Swallow 1.00"
+ },
+ {
+  "name": "Eurasian Collared-Dove",
+  "status": "CONFIRMED",
+  "own_conf": 0.996,
+  "rank": 1,
+  "birdnet_top": "Eurasian Collared-Dove 1.00"
+ },
+ {
+  "name": "Dickcissel",
+  "status": "CONFIRMED",
+  "own_conf": 0.995,
+  "rank": 1,
+  "birdnet_top": "Dickcissel 1.00"
+ },
+ {
+  "name": "Northern Cardinal",
+  "status": "CONFIRMED",
+  "own_conf": 0.995,
+  "rank": 1,
+  "birdnet_top": "Northern Cardinal 1.00"
+ },
+ {
+  "name": "Black-and-white Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.995,
+  "rank": 1,
+  "birdnet_top": "Black-and-white Warbler 1.00"
+ },
+ {
+  "name": "Pectoral Sandpiper",
+  "status": "CONFIRMED",
+  "own_conf": 0.995,
+  "rank": 1,
+  "birdnet_top": "Pectoral Sandpiper 0.99"
+ },
+ {
+  "name": "Northern House Wren",
+  "status": "CONFIRMED",
+  "own_conf": 0.995,
+  "rank": 1,
+  "birdnet_top": "House Wren 0.99"
+ },
+ {
+  "name": "Mute Swan",
+  "status": "CONFIRMED",
+  "own_conf": 0.995,
+  "rank": 1,
+  "birdnet_top": "Mute Swan 0.99"
+ },
+ {
+  "name": "White-breasted Nuthatch",
+  "status": "CONFIRMED",
+  "own_conf": 0.994,
+  "rank": 1,
+  "birdnet_top": "White-breasted Nuthatch 0.99"
+ },
+ {
+  "name": "Sandhill crane",
+  "status": "CONFIRMED",
+  "own_conf": 0.993,
+  "rank": 1,
+  "birdnet_top": "Sandhill Crane 0.99"
+ },
+ {
+  "name": "House Finch",
+  "status": "CONFIRMED",
+  "own_conf": 0.993,
+  "rank": 1,
+  "birdnet_top": "House Finch 0.99"
+ },
+ {
+  "name": "Cerulean Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.993,
+  "rank": 1,
+  "birdnet_top": "Cerulean Warbler 0.99"
+ },
+ {
+  "name": "Gray Partridge",
+  "status": "CONFIRMED",
+  "own_conf": 0.993,
+  "rank": 1,
+  "birdnet_top": "Gray Partridge 0.99"
+ },
+ {
+  "name": "Cedar Waxwing",
+  "status": "CONFIRMED",
+  "own_conf": 0.993,
+  "rank": 1,
+  "birdnet_top": "Cedar Waxwing 0.99"
+ },
+ {
+  "name": "Ring-billed Gull",
+  "status": "CONFIRMED",
+  "own_conf": 0.992,
+  "rank": 1,
+  "birdnet_top": "Ring-billed Gull 0.99"
+ },
+ {
+  "name": "Grasshopper Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 0.992,
+  "rank": 1,
+  "birdnet_top": "Grasshopper Sparrow 0.99"
+ },
+ {
+  "name": "Dunlin",
+  "status": "CONFIRMED",
+  "own_conf": 0.992,
+  "rank": 1,
+  "birdnet_top": "Dunlin 0.99"
+ },
+ {
+  "name": "Chimney Swift",
+  "status": "CONFIRMED",
+  "own_conf": 0.992,
+  "rank": 1,
+  "birdnet_top": "Chimney Swift 0.99"
+ },
+ {
+  "name": "Red-shouldered Hawk",
+  "status": "CONFIRMED",
+  "own_conf": 0.992,
+  "rank": 1,
+  "birdnet_top": "Red-shouldered Hawk 0.99"
+ },
+ {
+  "name": "Carolina Wren",
+  "status": "CONFIRMED",
+  "own_conf": 0.991,
+  "rank": 1,
+  "birdnet_top": "Carolina Wren 0.99"
+ },
+ {
+  "name": "Savannah Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 0.991,
+  "rank": 1,
+  "birdnet_top": "Savannah Sparrow 0.99"
+ },
+ {
+  "name": "Ruby-throated Hummingbird",
+  "status": "CONFIRMED",
+  "own_conf": 0.991,
+  "rank": 1,
+  "birdnet_top": "Ruby-throated Hummingbird 0.99"
+ },
+ {
+  "name": "Killdeer",
+  "status": "CONFIRMED",
+  "own_conf": 0.991,
+  "rank": 1,
+  "birdnet_top": "Killdeer 0.99"
+ },
+ {
+  "name": "Barn Swallow",
+  "status": "CONFIRMED",
+  "own_conf": 0.991,
+  "rank": 1,
+  "birdnet_top": "Barn Swallow 0.99"
+ },
+ {
+  "name": "White-crowned Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 0.99,
+  "rank": 1,
+  "birdnet_top": "White-crowned Sparrow 0.99"
+ },
+ {
+  "name": "Mourning Dove",
+  "status": "CONFIRMED",
+  "own_conf": 0.99,
+  "rank": 1,
+  "birdnet_top": "Mourning Dove 0.99"
+ },
+ {
+  "name": "American Pipit",
+  "status": "CONFIRMED",
+  "own_conf": 0.99,
+  "rank": 1,
+  "birdnet_top": "American Pipit 0.99"
+ },
+ {
+  "name": "Yellow-rumped Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.989,
+  "rank": 1,
+  "birdnet_top": "Yellow-rumped Warbler 0.99"
+ },
+ {
+  "name": "Eastern Bluebird",
+  "status": "CONFIRMED",
+  "own_conf": 0.989,
+  "rank": 1,
+  "birdnet_top": "Eastern Bluebird 0.99"
+ },
+ {
+  "name": "Marsh Wren",
+  "status": "CONFIRMED",
+  "own_conf": 0.989,
+  "rank": 1,
+  "birdnet_top": "Marsh Wren 0.99"
+ },
+ {
+  "name": "Mallard",
+  "status": "CONFIRMED",
+  "own_conf": 0.989,
+  "rank": 1,
+  "birdnet_top": "Mallard 0.99"
+ },
+ {
+  "name": "Yellow-billed Cuckoo",
+  "status": "CONFIRMED",
+  "own_conf": 0.989,
+  "rank": 1,
+  "birdnet_top": "Yellow-billed Cuckoo 0.99"
+ },
+ {
+  "name": "Swainson's Thrush",
+  "status": "CONFIRMED",
+  "own_conf": 0.988,
+  "rank": 1,
+  "birdnet_top": "Swainson's Thrush 0.99"
+ },
+ {
+  "name": "Common Goldeneye",
+  "status": "CONFIRMED",
+  "own_conf": 0.987,
+  "rank": 1,
+  "birdnet_top": "Common Goldeneye 0.99"
+ },
+ {
+  "name": "Common Nighthawk",
+  "status": "CONFIRMED",
+  "own_conf": 0.987,
+  "rank": 1,
+  "birdnet_top": "Common Nighthawk 0.99"
+ },
+ {
+  "name": "Yellow-throated Vireo",
+  "status": "CONFIRMED",
+  "own_conf": 0.985,
+  "rank": 1,
+  "birdnet_top": "Yellow-throated Vireo 0.98"
+ },
+ {
+  "name": "Orange-crowned Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.984,
+  "rank": 1,
+  "birdnet_top": "Orange-crowned Warbler 0.98"
+ },
+ {
+  "name": "Song Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 0.984,
+  "rank": 1,
+  "birdnet_top": "Song Sparrow 0.98"
+ },
+ {
+  "name": "Eastern Meadowlark",
+  "status": "CONFIRMED",
+  "own_conf": 0.982,
+  "rank": 1,
+  "birdnet_top": "Eastern Meadowlark 0.98"
+ },
+ {
+  "name": "Golden Eagle",
+  "status": "CONFIRMED",
+  "own_conf": 0.981,
+  "rank": 1,
+  "birdnet_top": "Golden Eagle 0.98"
+ },
+ {
+  "name": "Least Flycatcher",
+  "status": "CONFIRMED",
+  "own_conf": 0.978,
+  "rank": 1,
+  "birdnet_top": "Least Flycatcher 0.98"
+ },
+ {
+  "name": "Eastern Wood-Pewee",
+  "status": "CONFIRMED",
+  "own_conf": 0.977,
+  "rank": 1,
+  "birdnet_top": "Eastern Wood-Pewee 0.98"
+ },
+ {
+  "name": "American Crow",
+  "status": "CONFIRMED",
+  "own_conf": 0.976,
+  "rank": 1,
+  "birdnet_top": "American Crow 0.98"
+ },
+ {
+  "name": "Scarlet Tanager",
+  "status": "CONFIRMED",
+  "own_conf": 0.975,
+  "rank": 1,
+  "birdnet_top": "Scarlet Tanager 0.98"
+ },
+ {
+  "name": "Pileated Woodpecker",
+  "status": "CONFIRMED",
+  "own_conf": 0.975,
+  "rank": 1,
+  "birdnet_top": "Pileated Woodpecker 0.97"
+ },
+ {
+  "name": "Canada Goose",
+  "status": "CONFIRMED",
+  "own_conf": 0.974,
+  "rank": 1,
+  "birdnet_top": "Canada Goose 0.97"
+ },
+ {
+  "name": "Brown Creeper",
+  "status": "CONFIRMED",
+  "own_conf": 0.974,
+  "rank": 1,
+  "birdnet_top": "Brown Creeper 0.97"
+ },
+ {
+  "name": "Semipalmated Plover",
+  "status": "CONFIRMED",
+  "own_conf": 0.974,
+  "rank": 1,
+  "birdnet_top": "Semipalmated Plover 0.97"
+ },
+ {
+  "name": "Northern Bobwhite",
+  "status": "CONFIRMED",
+  "own_conf": 0.971,
+  "rank": 1,
+  "birdnet_top": "Northern Bobwhite 0.97"
+ },
+ {
+  "name": "Brown-headed Cowbird",
+  "status": "CONFIRMED",
+  "own_conf": 0.971,
+  "rank": 1,
+  "birdnet_top": "Brown-headed Cowbird 0.97"
+ },
+ {
+  "name": "Wilson's Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.968,
+  "rank": 1,
+  "birdnet_top": "Wilson's Warbler 0.97"
+ },
+ {
+  "name": "Northern Parula",
+  "status": "CONFIRMED",
+  "own_conf": 0.966,
+  "rank": 1,
+  "birdnet_top": "Northern Parula 0.97"
+ },
+ {
+  "name": "Wood Stork",
+  "status": "CONFIRMED",
+  "own_conf": 0.965,
+  "rank": 1,
+  "birdnet_top": "Wood Stork 0.96"
+ },
+ {
+  "name": "Winter Wren",
+  "status": "CONFIRMED",
+  "own_conf": 0.964,
+  "rank": 1,
+  "birdnet_top": "Winter Wren 0.96"
+ },
+ {
+  "name": "Common Loon",
+  "status": "CONFIRMED",
+  "own_conf": 0.963,
+  "rank": 1,
+  "birdnet_top": "Common Loon 0.96"
+ },
+ {
+  "name": "Common Grackle",
+  "status": "CONFIRMED",
+  "own_conf": 0.96,
+  "rank": 1,
+  "birdnet_top": "Common Grackle 0.96"
+ },
+ {
+  "name": "Acadian Flycatcher",
+  "status": "CONFIRMED",
+  "own_conf": 0.957,
+  "rank": 1,
+  "birdnet_top": "Acadian Flycatcher 0.96"
+ },
+ {
+  "name": "Magnolia Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.957,
+  "rank": 1,
+  "birdnet_top": "Magnolia Warbler 0.96"
+ },
+ {
+  "name": "Red-bellied Woodpecker",
+  "status": "CONFIRMED",
+  "own_conf": 0.956,
+  "rank": 1,
+  "birdnet_top": "Red-bellied Woodpecker 0.96"
+ },
+ {
+  "name": "Red-eyed Vireo",
+  "status": "CONFIRMED",
+  "own_conf": 0.954,
+  "rank": 1,
+  "birdnet_top": "Red-eyed Vireo 0.95"
+ },
+ {
+  "name": "White-eyed Vireo",
+  "status": "CONFIRMED",
+  "own_conf": 0.953,
+  "rank": 1,
+  "birdnet_top": "White-eyed Vireo 0.95"
+ },
+ {
+  "name": "Black-crowned Night Heron",
+  "status": "CONFIRMED",
+  "own_conf": 0.953,
+  "rank": 1,
+  "birdnet_top": "Black-crowned Night-Heron 0.95"
+ },
+ {
+  "name": "Tundra Swan",
+  "status": "CONFIRMED",
+  "own_conf": 0.951,
+  "rank": 1,
+  "birdnet_top": "Tundra Swan 0.95"
+ },
+ {
+  "name": "Brewer's Blackbird",
+  "status": "CONFIRMED",
+  "own_conf": 0.943,
+  "rank": 1,
+  "birdnet_top": "Brewer's Blackbird 0.94"
+ },
+ {
+  "name": "Golden-crowned Kinglet",
+  "status": "CONFIRMED",
+  "own_conf": 0.94,
+  "rank": 1,
+  "birdnet_top": "Golden-crowned Kinglet 0.94"
+ },
+ {
+  "name": "Olive-sided Flycatcher",
+  "status": "CONFIRMED",
+  "own_conf": 0.94,
+  "rank": 1,
+  "birdnet_top": "Olive-sided Flycatcher 0.94"
+ },
+ {
+  "name": "Willow Flycatcher",
+  "status": "CONFIRMED",
+  "own_conf": 0.939,
+  "rank": 1,
+  "birdnet_top": "Willow Flycatcher 0.94"
+ },
+ {
+  "name": "Great Blue Heron",
+  "status": "CONFIRMED",
+  "own_conf": 0.939,
+  "rank": 1,
+  "birdnet_top": "Great Blue Heron 0.94"
+ },
+ {
+  "name": "Cliff Swallow",
+  "status": "CONFIRMED",
+  "own_conf": 0.935,
+  "rank": 1,
+  "birdnet_top": "Cliff Swallow 0.93"
+ },
+ {
+  "name": "Snow Goose",
+  "status": "CONFIRMED",
+  "own_conf": 0.933,
+  "rank": 1,
+  "birdnet_top": "Snow Goose 0.93"
+ },
+ {
+  "name": "Field Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 0.932,
+  "rank": 1,
+  "birdnet_top": "Field Sparrow 0.93"
+ },
+ {
+  "name": "Yellow-bellied Flycatcher",
+  "status": "CONFIRMED",
+  "own_conf": 0.923,
+  "rank": 1,
+  "birdnet_top": "Yellow-bellied Flycatcher 0.92"
+ },
+ {
+  "name": "Osprey",
+  "status": "CONFIRMED",
+  "own_conf": 0.922,
+  "rank": 1,
+  "birdnet_top": "Osprey 0.92"
+ },
+ {
+  "name": "Rose-breasted Grosbeak",
+  "status": "CONFIRMED",
+  "own_conf": 0.917,
+  "rank": 1,
+  "birdnet_top": "Rose-breasted Grosbeak 0.92"
+ },
+ {
+  "name": "Rock Pigeon",
+  "status": "CONFIRMED",
+  "own_conf": 0.916,
+  "rank": 1,
+  "birdnet_top": "Rock Pigeon 0.92"
+ },
+ {
+  "name": "Lapland Longspur",
+  "status": "CONFIRMED",
+  "own_conf": 0.911,
+  "rank": 1,
+  "birdnet_top": "Lapland Longspur 0.91"
+ },
+ {
+  "name": "Dark-eyed Junco",
+  "status": "CONFIRMED",
+  "own_conf": 0.91,
+  "rank": 1,
+  "birdnet_top": "Dark-eyed Junco 0.91"
+ },
+ {
+  "name": "Black-billed Magpie",
+  "status": "CONFIRMED",
+  "own_conf": 0.909,
+  "rank": 1,
+  "birdnet_top": "Black-billed Magpie 0.91"
+ },
+ {
+  "name": "Red-tailed Hawk",
+  "status": "CONFIRMED",
+  "own_conf": 0.904,
+  "rank": 1,
+  "birdnet_top": "Red-tailed Hawk 0.90"
+ },
+ {
+  "name": "Kentucky Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.892,
+  "rank": 1,
+  "birdnet_top": "Kentucky Warbler 0.89"
+ },
+ {
+  "name": "Western Meadowlark",
+  "status": "CONFIRMED",
+  "own_conf": 0.888,
+  "rank": 1,
+  "birdnet_top": "Western Meadowlark 0.89"
+ },
+ {
+  "name": "Blue-headed Vireo",
+  "status": "CONFIRMED",
+  "own_conf": 0.875,
+  "rank": 1,
+  "birdnet_top": "Blue-headed Vireo 0.87"
+ },
+ {
+  "name": "American Robin",
+  "status": "CONFIRMED",
+  "own_conf": 0.871,
+  "rank": 1,
+  "birdnet_top": "American Robin 0.87"
+ },
+ {
+  "name": "Blue Jay",
+  "status": "CONFIRMED",
+  "own_conf": 0.871,
+  "rank": 1,
+  "birdnet_top": "Blue Jay 0.87"
+ },
+ {
+  "name": "Red Crossbill",
+  "status": "CONFIRMED",
+  "own_conf": 0.85,
+  "rank": 1,
+  "birdnet_top": "Red Crossbill 0.85"
+ },
+ {
+  "name": "Forster's Tern",
+  "status": "CONFIRMED",
+  "own_conf": 0.843,
+  "rank": 1,
+  "birdnet_top": "Forster's Tern 0.84"
+ },
+ {
+  "name": "American Tree Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 0.837,
+  "rank": 1,
+  "birdnet_top": "American Tree Sparrow 0.84"
+ },
+ {
+  "name": "Tufted Titmouse",
+  "status": "CONFIRMED",
+  "own_conf": 0.831,
+  "rank": 1,
+  "birdnet_top": "Tufted Titmouse 0.83"
+ },
+ {
+  "name": "Bullock's Oriole",
+  "status": "CONFIRMED",
+  "own_conf": 0.813,
+  "rank": 1,
+  "birdnet_top": "Bullock's Oriole 0.81"
+ },
+ {
+  "name": "Green-winged Teal",
+  "status": "CONFIRMED",
+  "own_conf": 0.809,
+  "rank": 1,
+  "birdnet_top": "Green-winged Teal 0.81"
+ },
+ {
+  "name": "Hermit Thrush",
+  "status": "CONFIRMED",
+  "own_conf": 0.807,
+  "rank": 1,
+  "birdnet_top": "Hermit Thrush 0.81"
+ },
+ {
+  "name": "House Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 0.806,
+  "rank": 1,
+  "birdnet_top": "House Sparrow 0.81"
+ },
+ {
+  "name": "Indigo Bunting",
+  "status": "CONFIRMED",
+  "own_conf": 0.796,
+  "rank": 1,
+  "birdnet_top": "Indigo Bunting 0.80"
+ },
+ {
+  "name": "Blue-winged Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.794,
+  "rank": 1,
+  "birdnet_top": "Blue-winged Warbler 0.79"
+ },
+ {
+  "name": "European Starling",
+  "status": "CONFIRMED",
+  "own_conf": 0.778,
+  "rank": 1,
+  "birdnet_top": "European Starling 0.78"
+ },
+ {
+  "name": "Blue-winged Teal",
+  "status": "CONFIRMED",
+  "own_conf": 0.752,
+  "rank": 1,
+  "birdnet_top": "Blue-winged Teal 0.75"
+ },
+ {
+  "name": "Black-throated Green Warbler",
+  "status": "CONFIRMED",
+  "own_conf": 0.748,
+  "rank": 1,
+  "birdnet_top": "Black-throated Green Warbler 0.75"
+ },
+ {
+  "name": "Brown Thrasher",
+  "status": "CONFIRMED",
+  "own_conf": 0.737,
+  "rank": 1,
+  "birdnet_top": "Brown Thrasher 0.74"
+ },
+ {
+  "name": "Baird's Sandpiper",
+  "status": "CONFIRMED",
+  "own_conf": 0.728,
+  "rank": 1,
+  "birdnet_top": "Baird's Sandpiper 0.73"
+ },
+ {
+  "name": "Swainson's Hawk",
+  "status": "CONFIRMED",
+  "own_conf": 0.725,
+  "rank": 1,
+  "birdnet_top": "Swainson's Hawk 0.73"
+ },
+ {
+  "name": "Black-capped Chickadee",
+  "status": "CONFIRMED",
+  "own_conf": 0.725,
+  "rank": 1,
+  "birdnet_top": "Black-capped Chickadee 0.72"
+ },
+ {
+  "name": "Hooded Merganser",
+  "status": "CONFIRMED",
+  "own_conf": 0.72,
+  "rank": 1,
+  "birdnet_top": "Hooded Merganser 0.72"
+ },
+ {
+  "name": "Downy Woodpecker",
+  "status": "CONFIRMED",
+  "own_conf": 0.72,
+  "rank": 1,
+  "birdnet_top": "Downy Woodpecker 0.72"
+ },
+ {
+  "name": "Yellow-bellied Sapsucker",
+  "status": "CONFIRMED",
+  "own_conf": 0.662,
+  "rank": 1,
+  "birdnet_top": "Yellow-bellied Sapsucker 0.66"
+ },
+ {
+  "name": "Short-eared Owl",
+  "status": "CONFIRMED",
+  "own_conf": 0.616,
+  "rank": 1,
+  "birdnet_top": "Short-eared Owl 0.62"
+ },
+ {
+  "name": "Belted Kingfisher",
+  "status": "CONFIRMED",
+  "own_conf": 0.602,
+  "rank": 1,
+  "birdnet_top": "Belted Kingfisher 0.60"
+ },
+ {
+  "name": "Great Egret",
+  "status": "CONFIRMED",
+  "own_conf": 0.601,
+  "rank": 1,
+  "birdnet_top": "Great Egret 0.60"
+ },
+ {
+  "name": "American Coot",
+  "status": "CONFIRMED",
+  "own_conf": 0.524,
+  "rank": 1,
+  "birdnet_top": "American Coot 0.52"
+ },
+ {
+  "name": "Yellow-breasted Chat",
+  "status": "CONFIRMED",
+  "own_conf": 0.464,
+  "rank": 1,
+  "birdnet_top": "Yellow-breasted Chat 0.46"
+ },
+ {
+  "name": "Eurasian Tree Sparrow",
+  "status": "CONFIRMED",
+  "own_conf": 0.456,
+  "rank": 1,
+  "birdnet_top": "Eurasian Tree Sparrow 0.46"
+ },
+ {
+  "name": "Wood Thrush",
+  "status": "CONFIRMED",
+  "own_conf": 0.432,
+  "rank": 1,
+  "birdnet_top": "Wood Thrush 0.43"
+ },
+ {
+  "name": "American Redstart",
+  "status": "CONFIRMED",
+  "own_conf": 0.391,
+  "rank": 1,
+  "birdnet_top": "American Redstart 0.39"
+ },
+ {
+  "name": "Red-winged Blackbird",
+  "status": "CONFIRMED",
+  "own_conf": 0.377,
+  "rank": 1,
+  "birdnet_top": "Red-winged Blackbird 0.38"
+ },
+ {
+  "name": "Bank Swallow",
+  "status": "CONFIRMED",
+  "own_conf": 0.292,
+  "rank": 1,
+  "birdnet_top": "Bank Swallow 0.29"
+ },
+ {
+  "name": "Greater Yellowlegs",
+  "status": "CONFIRMED",
+  "own_conf": 0.259,
+  "rank": 1,
+  "birdnet_top": "Greater Yellowlegs 0.26"
+ },
+ {
+  "name": "Bubulcus ibis",
+  "status": "CONFIRMED",
+  "own_conf": 0.21,
+  "rank": 1,
+  "birdnet_top": "Cattle Egret 0.21"
+ },
+ {
+  "name": "Great Crested Flycatcher",
+  "status": "CONFIRMED",
+  "own_conf": 0.201,
+  "rank": 1,
+  "birdnet_top": "Great Crested Flycatcher 0.20"
+ },
+ {
+  "name": "Grass Wren",
+  "status": "CONFIRMED",
+  "own_conf": 0.192,
+  "rank": 1,
+  "birdnet_top": "Grass Wren 0.19"
+ },
+ {
+  "name": "Pine Siskin",
+  "status": "CONFIRMED",
+  "own_conf": 0.165,
+  "rank": 1,
+  "birdnet_top": "Pine Siskin 0.17"
+ },
+ {
+  "name": "Yellow-headed Blackbird",
+  "status": "CONFIRMED",
+  "own_conf": 0.161,
+  "rank": 1,
+  "birdnet_top": "Yellow-headed Blackbird 0.16"
+ }
+]
