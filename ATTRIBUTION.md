@@ -14,10 +14,10 @@ is MIT and is licensed separately — see [LICENSE](LICENSE).
 
 | License | Clips |
 |---|---|
-| CC BY-SA 3.0 | 85 |
+| CC BY-SA 3.0 | 86 |
 | CC BY-SA 4.0 | 70 |
 | Public domain | 21 |
-| https://creativecommons.org/licenses/by-nc-sa/4.0/ | 16 |
+| https://creativecommons.org/licenses/by-nc-sa/4.0/ | 15 |
 | CC BY 4.0 | 4 |
 | CC BY 3.0 | 2 |
 | CC BY 2.5 | 2 |
@@ -109,7 +109,7 @@ only free licenses. That is what makes redistributing edited clips possible at a
 | Eastern Kingbird (*Tyrannus tyrannus*) | `easkin.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Tyrannus_tyrannus_-_Eastern_Kingbird_XC134870.o](https://commons.wikimedia.org/wiki/File:Tyrannus_tyrannus_-_Eastern_Kingbird_XC134870.ogg) |
 | Eastern Meadowlark (*Sturnella magna*) | `easmea.mp3` | Jonathon Jongsma | CC BY-SA 4.0 | [File:Sturnella_magna_-_Eastern_Meadowlark_XC320477.m](https://commons.wikimedia.org/wiki/File:Sturnella_magna_-_Eastern_Meadowlark_XC320477.mp3) |
 | Eastern Phoebe (*Sayornis phoebe*) | `easpho.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Sayornis_phoebe_-_Eastern_Phoebe_XC99547.mp3](https://commons.wikimedia.org/wiki/File:Sayornis_phoebe_-_Eastern_Phoebe_XC99547.mp3) |
-| Eastern Screech-Owl (*Megascops asio*) | `easowl1.mp3` | András Schmidt | https://creativecommons.org/licenses/by-nc-sa/4.0/ | [879112](https://xeno-canto.org/879112) |
+| Eastern Screech-Owl (*Megascops asio*) | `easowl1.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Megascops_asio_-_Eastern_Screech_Owl_XC129257.o](https://commons.wikimedia.org/wiki/File:Megascops_asio_-_Eastern_Screech_Owl_XC129257.ogg) |
 | Eastern Towhee (*Pipilo erythrophthalmus*) | `eastow.mp3` | No machine-readable author provided. Mdf assumed (based on copyright claims). | CC BY-SA 3.0 | [File:Pipilo-erythrophthalmus-001.ogg](https://commons.wikimedia.org/wiki/File:Pipilo-erythrophthalmus-001.ogg) |
 | Eastern Warbling Vireo (*Vireo gilvus*) | `eawvir1.mp3` | Jonathon Jongsma | CC BY-SA 3.0 | [File:Vireo_gilvus_-_Warbling_Vireo_XC102968.mp3](https://commons.wikimedia.org/wiki/File:Vireo_gilvus_-_Warbling_Vireo_XC102968.mp3) |
 | Eastern Wood-Pewee (*Contopus virens*) | `eawpew.mp3` | No machine-readable author provided. Mdf assumed (based on copyright claims). | CC BY-SA 3.0 | [File:Contopus-virens-001.ogg](https://commons.wikimedia.org/wiki/File:Contopus-virens-001.ogg) |
