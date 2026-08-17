@@ -41,6 +41,9 @@ only free licenses. That is what makes redistributing edited clips possible at a
 - **County geometry** — US Census Bureau cartographic boundary files, public domain
   (17 U.S.C. §105). GADM contributes identifier *codes* only; no GADM geometry is
   redistributed, as its license does not permit that.
+- **Ecoregion geometry** — US EPA, Office of Research and Development, Level III/IV
+  Ecoregions of the Continental United States. A US federal work; EPA's metadata
+  states "Use Constraints: None". Simplified for display and for spatial queries.
 
 ## Clips (276)
 

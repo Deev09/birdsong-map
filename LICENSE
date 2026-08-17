@@ -34,5 +34,8 @@ The bundled data is licensed separately and is NOT MIT:
   data/regions.json    Derived from GBIF eBird Observation Dataset, CC BY 4.0
                        doi:10.15468/aomfnb
   data/counties.geojson  US Census cartographic boundaries, public domain
+  data/us-ecoregions.geojson  US EPA Level III Ecoregions, public domain
+                       ("Use Constraints: None")
+  data/us-regions.json Derived from GBIF eBird Observation Dataset, CC BY 4.0
 
 If you reuse the data, carry the attribution with it. See ATTRIBUTION.md.
