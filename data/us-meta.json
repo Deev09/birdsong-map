@@ -1,0 +1,10 @@
+{
+  "scope": "Continental US \u00b7 EPA Level III ecoregions",
+  "units": 85,
+  "species": 408,
+  "withAudio": 261,
+  "sources": {
+    "occurrence": "GBIF eBird Observation Dataset (CC BY 4.0), doi:10.15468/aomfnb",
+    "geometry": "US EPA ORD Level III Ecoregions (public domain)"
+  }
+}

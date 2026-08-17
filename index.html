@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Birdsong Map — hear the birds of every Iowa county</title>
-<meta name="description" content="Sweep a map of Iowa and hear what lives there. 99 counties, 198 verified bird calls, every month of the year — and you can search by what a sound was like: trill, whistle, hoot. Free, no ads, no account.">
+<title>Birdsong Map — hear the birds of anywhere in the US</title>
+<meta name="description" content="Sweep a map of Iowa and hear what lives there. 99 Iowa counties plus all 85 US ecoregions, 276 verified bird calls, every month of the year — and you can search by what a sound was like: trill, whistle, hoot. Free, no ads, no account.">
 <link rel="canonical" href="https://deev09.github.io/birdsong-map/">
 <meta name="theme-color" content="#0d1014">
 <meta name="author" content="Deev Swain">
@@ -13,15 +13,15 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Birdsong Map">
 <meta property="og:url" content="https://deev09.github.io/birdsong-map/">
-<meta property="og:title" content="Birdsong Map — hear the birds of every Iowa county">
-<meta property="og:description" content="Hover a county to hear its birds. Or search by what a sound was like — trill, whistle, hoot. 99 counties, 198 calls, 12 months.">
+<meta property="og:title" content="Birdsong Map — hear the birds of anywhere in the US">
+<meta property="og:description" content="Hover a county to hear its birds. Or search by what a sound was like — trill, whistle, hoot. 99 counties + 85 US ecoregions, 276 calls.">
 <meta property="og:image" content="https://deev09.github.io/birdsong-map/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="A map of Iowa's 99 counties, each shaded by the bird sound most over-represented there.">
 
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Birdsong Map — hear the birds of every Iowa county">
+<meta name="twitter:title" content="Birdsong Map — hear the birds of anywhere in the US">
 <meta name="twitter:description" content="Hover a county to hear its birds. Or search by what a sound was like — trill, whistle, hoot.">
 <meta name="twitter:image" content="https://deev09.github.io/birdsong-map/og.png">
 
@@ -31,15 +31,15 @@
      assets for 10 minutes, so without it a returning visitor can get a fresh
      index.html against a stale app.js — which shipped a page whose new markup
      the old script knew nothing about. -->
-<link rel="stylesheet" href="style.css?v=18">
+<link rel="stylesheet" href="style.css?v=23">
 </head>
 <body>
 
 <div class="gate" id="gate">
   <div class="gate-card">
     <h2>Birdsong Map</h2>
-    <p class="gate-lead">Every county in <strong>Iowa</strong>, and what you'd hear there.</p>
-    <p class="gate-sub">99 counties · 198 verified bird calls · 12 months</p>
+    <p class="gate-lead">Hear what lives there — <strong>Iowa</strong> county by county, or every habitat region in the lower 48.</p>
+    <p class="gate-sub">99 Iowa counties + 85 US ecoregions · 276 verified bird calls · 12 months</p>
     <button class="gate-go" id="gateGo">Turn on sound</button>
     <p class="gate-fine">Then sweep the map. Browsers need one click before any site can play audio.</p>
   </div>
@@ -60,6 +60,11 @@
     <button class="chip" data-shape="honk"><i></i>honk</button>
     <button class="chip" data-shape="buzz"><i></i>buzz</button>
     <button class="chip" data-shape="screech"><i></i>screech</button>
+  </div>
+
+  <div class="layers" id="scopes" role="group" aria-label="Area">
+    <button class="layer-btn on" data-scope="ia">Iowa</button>
+    <button class="layer-btn" data-scope="us">United States</button>
   </div>
 
   <div class="layers" id="layers" role="group" aria-label="Map layer" hidden>
@@ -173,6 +178,6 @@
   </p>
 </noscript>
 
-<script src="app.js?v=18"></script>
+<script src="app.js?v=23"></script>
 </body>
 </html>

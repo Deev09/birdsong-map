@@ -33,6 +33,17 @@ const state = {
   yearTimer: null,
   lastTapped: null,   // touch: first tap hears, second tap opens details
   layer: 'county',    // 'county' | 'eco'
+  scope: 'ia',        // 'ia' (Iowa counties + its ecoregions) | 'us'
+};
+
+// Going national did not need a new client concept: an ecoregion is just
+// another "place with a month-by-month species list", so the national build
+// swaps the geometry and the regions and everything else works unchanged.
+const SCOPES = {
+  ia: { geo: 'data/counties.geojson', regions: 'data/regions.json',
+        label: 'Iowa', layers: true },
+  us: { geo: 'data/us-ecoregions.geojson', regions: 'data/us-regions.json',
+        label: 'United States', layers: false },
 };
 
 /**
@@ -49,6 +60,7 @@ const state = {
 let UNITS = {};
 
 function buildUnits() {
+  if (state.scope === 'us') { UNITS = REGIONS; return; }
   if (state.layer === 'eco' && ECO) {
     UNITS = {};
     for (const [name, e] of Object.entries(ECO.ecoregions)) {
@@ -61,22 +73,42 @@ function buildUnits() {
 
 /** Which unit does this county belong to, in the current layer? */
 function unitOf(gid) {
+  if (state.scope === 'us') return gid;      // the polygon IS the unit
   return state.layer === 'eco' ? (ECO && ECO.byCounty[gid]) : gid;
 }
 
 function unitLabel(id) {
   const u = UNITS[id];
   if (!u) return '';
+  if (state.scope === 'us') return u.name;
   return state.layer === 'eco' ? u.name : u.name + ' County';
 }
 
 /** Halo anchor: a county's centroid, or the mean of an ecoregion's counties. */
 function unitCentroid(id) {
-  if (state.layer !== 'eco') return centroids[id];
+  if (state.scope === 'us' || state.layer !== 'eco') return centroids[id];
   const members = (UNITS[id] && UNITS[id].members || []).filter(g => centroids[g]);
   if (!members.length) return null;
   return [members.reduce((a, g) => a + centroids[g][0], 0) / members.length,
           members.reduce((a, g) => a + centroids[g][1], 0) / members.length];
+}
+
+/** Swap the whole map between Iowa and the continental US. */
+async function setScope(scope) {
+  if (scope === state.scope) return;
+  state.scope = scope;
+  state.layer = 'county';
+  state.gid = null;
+  boot.hash = '';                    // a stale #county link means nothing now
+  for (const b of document.querySelectorAll('#scopes .layer-btn')) {
+    b.classList.toggle('on', b.dataset.scope === scope);
+  }
+  document.getElementById('layers').hidden = !SCOPES[scope].layers || !ECO;
+  document.querySelector('.where').textContent = SCOPES[scope].label;
+  document.getElementById('tag').textContent = scope === 'us'
+    ? 'Every habitat region in the lower 48. Sweep it.'
+    : 'Sweep the map. Every county sounds different.';
+  await boot();
 }
 
 function setLayer(layer) {
@@ -851,6 +883,19 @@ function closeSheet() {
  */
 function showEco(gid) {
   const el = document.getElementById('eco');
+  if (state.scope === 'us') {
+    const u = UNITS[gid];
+    el.hidden = !u;
+    if (u) {
+      // l1 and l2 are often the same string (Marine West Coast Forest), so
+      // showing both just stutters.
+      const parts = [u.l2, u.l1].filter(Boolean);
+      const uniq = parts[1] && parts[1] !== parts[0] ? parts : parts.slice(0, 1);
+      el.innerHTML = uniq.map((t, i) =>
+        `<span class="${i ? 'eco-l2' : 'eco-name'}">${esc(t)}</span>`).join('');
+    }
+    return;
+  }
   const name = ECO && ECO.byCounty[gid];
   const e = name && ECO.ecoregions[name];
   if (!e) { el.hidden = true; return; }
@@ -1005,12 +1050,13 @@ async function boot() {
   // were waiting to apply, so shared ecoregion links silently opened Polk.
   boot.hash = boot.hash === undefined ? location.hash : boot.hash;
   bootStatus('Loading bird data…');
+  const sc = SCOPES[state.scope];
   let geo, species, regions;
   try {
     [geo, species, regions] = await Promise.all([
-      loadJson('data/counties.geojson'),
+      loadJson(sc.geo),
       loadJson('data/species.json'),
-      loadJson('data/regions.json'),
+      loadJson(sc.regions),
     ]);
   } catch (err) {
     // Previously this rejected into nothing and left a permanently empty page
@@ -1069,8 +1115,11 @@ async function boot() {
     if (!state.hoverSound) AudioKit.stop();
   });
 
-  for (const b of document.querySelectorAll('.layer-btn')) {
+  for (const b of document.querySelectorAll('#layers .layer-btn')) {
     b.addEventListener('click', () => setLayer(b.dataset.layer));
+  }
+  for (const b of document.querySelectorAll('#scopes .layer-btn')) {
+    b.addEventListener('click', () => setScope(b.dataset.scope));
   }
 
   document.getElementById('yearplay').addEventListener('click', toggleYear);
@@ -1153,7 +1202,8 @@ function finishBoot() {
     .then(e => {
       if (!e) return;
       ECO = e;
-      document.getElementById('layers').hidden = false;
+      // Iowa-only: nationally the unit already IS the ecoregion.
+      document.getElementById('layers').hidden = !SCOPES[state.scope].layers;
       // Now the ecoregion layer exists, retry the link the page was opened with.
       // Guarded: a throw in here used to disappear into an unhandled rejection,
       // leaving state.layer flipped but nothing selected and no error anywhere.
@@ -1162,9 +1212,15 @@ function finishBoot() {
       if (!applied) { paint(); if (state.gid) showEco(state.gid); }
     });
 
-  // A shared link wins; otherwise open on Des Moines, the example that started this.
+  // A shared link wins; otherwise open somewhere sensible for the scope —
+  // Des Moines for Iowa, the largest ecoregion nationally. Falling back to a
+  // hardcoded 'Polk' left the national map with nothing selected at all.
   if (!readUrl()) {
-    select(Object.keys(REGIONS).find(g => REGIONS[g].name === 'Polk'));
+    const fallback = state.scope === 'us'
+      ? Object.keys(UNITS).sort((a, b) =>
+          (listFor(b, state.month).length) - (listFor(a, state.month).length))[0]
+      : Object.keys(UNITS).find(g => UNITS[g].name === 'Polk');
+    select(fallback || Object.keys(UNITS)[0]);
   }
 }
 

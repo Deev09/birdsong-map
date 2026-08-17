@@ -199,6 +199,8 @@ def main():
     ap.add_argument("--all", action="store_true", help="every species with audio")
     ap.add_argument("--unverified", action="store_true",
                     help="only species BirdNET could not confirm (needs verification.json)")
+    ap.add_argument("--missing", action="store_true",
+                    help="only species with no audio source at all")
     ap.add_argument("--apply", action="store_true", help="write changes")
     ap.add_argument("--clip", type=float, default=6.0)
     args = ap.parse_args()
@@ -239,6 +241,11 @@ def main():
                if v["status"] in ("ABSENT", "NO-BIRD")}
         targets = sorted(v["sci"] for v in species.values() if v["name"] in bad)
         log(f"{len(targets)} species BirdNET could not confirm")
+    elif args.missing:
+        # Pure gain: these species currently have nothing, so anything usable
+        # xeno-canto returns is strictly better than silence.
+        targets = sorted(v["sci"] for v in species.values() if not v.get("audio"))
+        log(f"{len(targets)} species with no audio source")
     elif args.all:
         targets = sorted(by_sci)
     else:
