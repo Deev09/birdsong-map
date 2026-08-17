@@ -667,3 +667,26 @@ kbd {
 .eco-l2 { opacity: .8; }
 .eco-why b { color: var(--ink); font-weight: 600; cursor: pointer; }
 .eco-why b:hover { color: var(--accent); }
+
+/* ---------------- layer switch ---------------- */
+
+.layers { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; overflow: hidden; }
+.layers[hidden] { display: none; }
+
+.layer-btn {
+  padding: 7px 14px;
+  border: none;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+
+.layer-btn:hover { color: var(--ink); }
+.layer-btn.on { background: var(--accent); color: #0d1014; font-weight: 650; }
+
+/* In ecoregion mode the county lines are scaffolding — fade them so the
+   habitat region reads as one shape rather than 81 rectangles. */
+#map path.eco-mode { stroke-opacity: .18; }
+#map path.eco-mode.sel { stroke-opacity: 1; stroke-width: 1.2; }

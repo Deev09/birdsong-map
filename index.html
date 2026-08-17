@@ -31,7 +31,7 @@
      assets for 10 minutes, so without it a returning visitor can get a fresh
      index.html against a stale app.js — which shipped a page whose new markup
      the old script knew nothing about. -->
-<link rel="stylesheet" href="style.css?v=13">
+<link rel="stylesheet" href="style.css?v=18">
 </head>
 <body>
 
@@ -60,6 +60,11 @@
     <button class="chip" data-shape="honk"><i></i>honk</button>
     <button class="chip" data-shape="buzz"><i></i>buzz</button>
     <button class="chip" data-shape="screech"><i></i>screech</button>
+  </div>
+
+  <div class="layers" id="layers" role="group" aria-label="Map layer" hidden>
+    <button class="layer-btn on" data-layer="county">Counties</button>
+    <button class="layer-btn" data-layer="eco">Ecoregions</button>
   </div>
 
   <label class="toggle">
@@ -168,6 +173,6 @@
   </p>
 </noscript>
 
-<script src="app.js?v=13"></script>
+<script src="app.js?v=18"></script>
 </body>
 </html>

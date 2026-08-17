@@ -193,12 +193,28 @@ def main():
     for name, members in groups.items():
         others = [g for g in byCounty if g not in members]
         any_member = byCounty[members[0]]
+
+        # Roll the member counties up into a month-by-month species list, in the
+        # same shape regions.json uses, so the app can treat an ecoregion as
+        # just another clickable unit. No new GBIF calls: this is the county
+        # data already on disk, summed.
+        months = {}
+        for m in map(str, range(1, 13)):
+            tot = {}
+            for g in members:
+                for k, c in regions[g]["months"].get(m, []):
+                    tot[k] = tot.get(k, 0) + c
+            months[m] = [[k, c] for k, c in
+                         sorted(tot.items(), key=lambda t: -t[1])[:40]]
+
         ecos[name] = {
             "code": any_member["code"],
             "name": name,
             "l2": any_member["l2"],
             "l1": any_member["l1"],
             "counties": len(members),
+            "members": members,
+            "months": months,
             "distinctive": distinctive(members, regions, species, others),
         }
 

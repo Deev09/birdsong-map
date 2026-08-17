@@ -32,7 +32,76 @@ const state = {
   hoverSound: true,
   yearTimer: null,
   lastTapped: null,   // touch: first tap hears, second tap opens details
+  layer: 'county',    // 'county' | 'eco'
 };
+
+/**
+ * The clickable units for the current layer, keyed by id.
+ *
+ * Counties are where people are; ecoregions are where birds are. Both are just
+ * "a place with a month-by-month species list", so the whole app works off this
+ * one shape and nothing downstream needs to know which layer is active.
+ *
+ * The map keeps drawing county polygons either way — an ecoregion is painted by
+ * giving all its member counties the same fill, which makes its true shape
+ * emerge without needing a polygon union or a second set of geometry.
+ */
+let UNITS = {};
+
+function buildUnits() {
+  if (state.layer === 'eco' && ECO) {
+    UNITS = {};
+    for (const [name, e] of Object.entries(ECO.ecoregions)) {
+      UNITS[name] = { name, months: e.months, members: e.members, eco: e };
+    }
+  } else {
+    UNITS = REGIONS;
+  }
+}
+
+/** Which unit does this county belong to, in the current layer? */
+function unitOf(gid) {
+  return state.layer === 'eco' ? (ECO && ECO.byCounty[gid]) : gid;
+}
+
+function unitLabel(id) {
+  const u = UNITS[id];
+  if (!u) return '';
+  return state.layer === 'eco' ? u.name : u.name + ' County';
+}
+
+/** Halo anchor: a county's centroid, or the mean of an ecoregion's counties. */
+function unitCentroid(id) {
+  if (state.layer !== 'eco') return centroids[id];
+  const members = (UNITS[id] && UNITS[id].members || []).filter(g => centroids[g]);
+  if (!members.length) return null;
+  return [members.reduce((a, g) => a + centroids[g][0], 0) / members.length,
+          members.reduce((a, g) => a + centroids[g][1], 0) / members.length];
+}
+
+function setLayer(layer) {
+  const prev = state.gid;
+  state.layer = layer;
+  buildUnits();
+  for (const b of document.querySelectorAll('.layer-btn')) {
+    b.classList.toggle('on', b.dataset.layer === layer);
+  }
+  document.getElementById('tag').textContent = layer === 'eco'
+    ? 'Habitat regions, not county lines. This is what the birds respond to.'
+    : 'Sweep the map. Every county sounds different.';
+  // Keep the user where they were rather than dumping them somewhere arbitrary:
+  // switching to ecoregions selects the one containing the open county, and
+  // switching back selects a county inside the open ecoregion.
+  let keep;
+  if (layer === 'eco') {
+    keep = ECO && ECO.byCounty[prev];
+  } else {
+    keep = prev && ECO && ECO.ecoregions[prev]
+      ? (ECO.ecoregions[prev].members || []).find(g => UNITS[g])
+      : (UNITS[prev] ? prev : null);
+  }
+  select(keep && UNITS[keep] ? keep : Object.keys(UNITS)[0]);
+}
 
 /**
  * Touch devices never fire pointerenter, so a hover-driven map is silent on a
@@ -288,7 +357,7 @@ function drawSpec(canvas, key) {
 // ------------------------------------------------------------------ data helpers
 
 function listFor(gid, month) {
-  const r = REGIONS[gid];
+  const r = UNITS[gid];
   if (!r) return [];
   return (r.months[String(month)] || []).filter(([k]) => SPECIES[k]);
 }
@@ -360,7 +429,7 @@ function anomalyMap() {
   const vecs = {};
   const mean = new Array(SHAPE_ORDER.length).fill(0);
   let n = 0;
-  for (const gid in REGIONS) {
+  for (const gid in UNITS) {
     const v = shapeVector(gid);
     if (!v) continue;
     vecs[gid] = v;
@@ -423,16 +492,19 @@ function drawMap() {
     t.textContent = f.properties.name + ' County';
     p.appendChild(t);
 
-    p.addEventListener('pointerenter', () => hoverCounty(gid, p));
+    p.addEventListener('pointerenter', () => hoverCounty(unitOf(gid), p));
     p.addEventListener('click', () => {
-      select(gid);
-      // On touch there was no hover to play the county's bird, so the tap has
+      const u = unitOf(gid);
+      if (!u) return;
+      select(u);
+      // On touch there was no hover to play the unit's bird, so the tap has
       // to do both jobs — otherwise the map is mute.
-      if (!canHover()) hoverCounty(gid, p);
+      if (!canHover()) hoverCounty(u, p);
     });
-    p.addEventListener('focus', () => hoverCounty(gid, p));
+    p.addEventListener('focus', () => hoverCounty(unitOf(gid), p));
     p.addEventListener('keydown', e => {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); select(gid); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault();
+        const u = unitOf(gid); if (u) select(u); }
     });
     svg.appendChild(p);
   }
@@ -443,23 +515,29 @@ function drawMap() {
 function paint() {
   const anom = state.shape ? null : anomalyMap();
   for (const p of document.querySelectorAll('#map path')) {
-    const gid = p.dataset.gid;
+    // A county polygon shows the state of whatever UNIT it belongs to, so in
+    // ecoregion mode all of an ecoregion's counties fill and select together.
+    const unit = unitOf(p.dataset.gid);
     let fill = '#10151c';
-    if (state.shape) {
-      const a = Math.min(1, shapeShare(gid, state.shape) * 2.6);
+    if (!unit) {
+      fill = '#10151c';
+    } else if (state.shape) {
+      const a = Math.min(1, shapeShare(unit, state.shape) * 2.6);
       fill = `color-mix(in srgb, ${SHAPE[state.shape]} ${(a * 88).toFixed(0)}%, #10151c)`;
-    } else if (anom[gid]) {
-      const { tag, norm } = anom[gid];
-      const pct = (22 + norm * 62).toFixed(0);   // keep weak counties visible
+    } else if (anom[unit]) {
+      const { tag, norm } = anom[unit];
+      const pct = (22 + norm * 62).toFixed(0);   // keep weak units visible
       fill = `color-mix(in srgb, ${SHAPE[tag]} ${pct}%, #10151c)`;
     }
     p.style.setProperty('--f', fill);
-    p.classList.toggle('sel', gid === state.gid);
+    p.classList.toggle('sel', !!unit && unit === state.gid);
+    p.classList.toggle('eco-mode', state.layer === 'eco');
     // Show the ecoregion as a shape on the map: the selected county's
     // siblings light up, so the habitat region is visible rather than merely
     // named.
-    const sameEco = ECO && state.gid && gid !== state.gid
-      && ECO.byCounty[gid] && ECO.byCounty[gid] === ECO.byCounty[state.gid];
+    const sameEco = state.layer === 'county' && ECO && state.gid
+      && p.dataset.gid !== state.gid && ECO.byCounty[p.dataset.gid]
+      && ECO.byCounty[p.dataset.gid] === ECO.byCounty[state.gid];
     p.classList.toggle('kin', !!sameEco);
   }
   drawLegend();
@@ -475,17 +553,18 @@ function drawLegend() {
 
 let hoverTimer = null;
 function hoverCounty(gid, pathEl) {
+  if (!gid || !UNITS[gid]) return;
   const list = currentList(gid);
   AudioKit.prefetch(list.map(([k]) => k));
 
   const top = list[0];
-  const name = REGIONS[gid].name;
+  const label = unitLabel(gid);
   if (!top) {
-    showPeek(pathEl, null, `${name} County`, state.shape ? `no ${state.shape} here` : 'no recordings');
+    showPeek(pathEl, null, label, state.shape ? `no ${state.shape} here` : 'no recordings');
     return;
   }
   const sp = SPECIES[top[0]];
-  showPeek(pathEl, top[0], sp.name, `${name} County · ${(sp.sound && sp.sound.tags.join(' · ')) || ''}`);
+  showPeek(pathEl, top[0], sp.name, `${label} · ${(sp.sound && sp.sound.tags.join(' · ')) || ''}`);
 
   if (!state.hoverSound) return;
   // Small delay so dragging the pointer across the state doesn't machine-gun.
@@ -523,7 +602,9 @@ function drawRing() {
   const svg = document.getElementById('map');
   const box = svg.getBoundingClientRect();
   const scale = box.width / proj.width;
-  const [cx0, cy0] = centroids[state.gid];
+  const c0 = unitCentroid(state.gid);
+  if (!c0) return;
+  const [cx0, cy0] = c0;
 
   // Shrink the halo on narrow screens rather than letting it swamp the map --
   // but never below the 44 px touch minimum, and fewer pips instead. The ring
@@ -539,7 +620,16 @@ function drawRing() {
   // without overlapping. This is in screen pixels -- scaling it by the map
   // scale (as an earlier version did) collapses the ring at small sizes.
   const R = Math.max((list.length * (pip + 8)) / (2 * Math.PI), pip * 1.5);
-  const cx = cx0 * scale, cy = cy0 * scale;
+
+  // Keep the halo inside the map box. Anchoring it exactly on the centroid
+  // pushes it off-canvas for anything near an edge — obvious once ecoregions
+  // arrived, since the Driftless Area sits in the north-east corner and half
+  // its ring landed over the header. The spokes still run to the true centre,
+  // so the connection stays honest even when the ring is nudged.
+  const box2 = svg.getBoundingClientRect();
+  const pad = R + pip / 2 + 4;
+  const cx = Math.min(Math.max(cx0 * scale, pad), Math.max(pad, box2.width - pad));
+  const cy = Math.min(Math.max(cy0 * scale, pad), Math.max(pad, box2.height - pad));
 
   ring.style.setProperty('--pip', pip + 'px');
   // Warm every clip in the halo now, so sweeping it is 0 ms per bird.
@@ -556,7 +646,7 @@ function drawRing() {
     const y = cy + Math.sin(a) * R;
 
     const line = document.createElementNS(ns, 'line');
-    line.setAttribute('x1', cx); line.setAttribute('y1', cy);
+    line.setAttribute('x1', cx0 * scale); line.setAttribute('y1', cy0 * scale);
     line.setAttribute('x2', x); line.setAttribute('y2', y);
     line.setAttribute('stroke', 'rgba(255,180,84,.22)');
     line.setAttribute('stroke-width', '1');
@@ -602,8 +692,7 @@ function drawRail() {
 
   const list = railList(state.gid);
   const withSound = list.filter(([k]) => SPECIES[k].clip).length;
-  const name = REGIONS[state.gid].name;
-  document.getElementById('place').textContent = name + ' County';
+  document.getElementById('place').textContent = unitLabel(state.gid);
   const one = list.length === 1;
   document.getElementById('sub').textContent = state.shape
     ? `${list.length} bird${one ? '' : 's'} here in ${FULL[state.month]} with a ${state.shape}`
@@ -846,20 +935,34 @@ function toggleYear() {
 const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
 function writeUrl() {
-  if (!state.gid || !REGIONS[state.gid]) return;
-  const parts = [slug(REGIONS[state.gid].name), state.month];
+  if (!state.gid || !UNITS[state.gid]) return;
+  const parts = [(state.layer === 'eco' ? 'eco:' : '') + slug(UNITS[state.gid].name),
+                 state.month];
   if (state.shape) parts.push(state.shape);
   const hash = '#' + parts.join('/');
   if (location.hash !== hash) history.replaceState(null, '', hash);
 }
 
 /** Apply a hash. Returns false if there was nothing usable to apply. */
-function readUrl() {
-  const raw = decodeURIComponent(location.hash.replace(/^#\/?/, '')).trim();
+function readUrl(hash) {
+  const raw = decodeURIComponent((hash === undefined ? location.hash : hash)
+    .replace(/^#\/?/, '')).trim();
   if (!raw) return false;
-  const [county, month, shape] = raw.split('/');
+  // let, not const: the eco: prefix is stripped in place below.
+  let [county, month, shape] = raw.split('/');
 
-  const gid = Object.keys(REGIONS).find(g => slug(REGIONS[g].name) === county);
+  if (county.startsWith('eco:')) {
+    if (!ECO) return false;             // data not in yet; boot retries later
+    state.layer = 'eco';
+    county = county.slice(4);
+  } else {
+    state.layer = 'county';
+  }
+  buildUnits();
+  for (const b of document.querySelectorAll('.layer-btn')) {
+    b.classList.toggle('on', b.dataset.layer === state.layer);
+  }
+  const gid = Object.keys(UNITS).find(g => slug(UNITS[g].name) === county);
   if (!gid) return false;
 
   const m = parseInt(month, 10);
@@ -896,6 +999,11 @@ async function loadJson(url) {
 }
 
 async function boot() {
+  // Capture the incoming link BEFORE anything can rewrite it. An #eco: link
+  // cannot be honoured until ecoregions.json lands, and the default selection
+  // calls writeUrl() in the meantime — which used to clobber the very link we
+  // were waiting to apply, so shared ecoregion links silently opened Polk.
+  boot.hash = boot.hash === undefined ? location.hash : boot.hash;
   bootStatus('Loading bird data…');
   let geo, species, regions;
   try {
@@ -911,6 +1019,7 @@ async function boot() {
     return;
   }
   GEO = geo; SPECIES = species; REGIONS = regions;
+  buildUnits();
   bootStatus(null);
 
   drawMap();
@@ -959,6 +1068,10 @@ async function boot() {
     state.hoverSound = e.target.checked;
     if (!state.hoverSound) AudioKit.stop();
   });
+
+  for (const b of document.querySelectorAll('.layer-btn')) {
+    b.addEventListener('click', () => setLayer(b.dataset.layer));
+  }
 
   document.getElementById('yearplay').addEventListener('click', toggleYear);
   document.getElementById('sheetX').addEventListener('click', closeSheet);
@@ -1040,8 +1153,13 @@ function finishBoot() {
     .then(e => {
       if (!e) return;
       ECO = e;
-      paint();
-      if (state.gid) showEco(state.gid);
+      document.getElementById('layers').hidden = false;
+      // Now the ecoregion layer exists, retry the link the page was opened with.
+      // Guarded: a throw in here used to disappear into an unhandled rejection,
+      // leaving state.layer flipped but nothing selected and no error anywhere.
+      let applied = false;
+      try { applied = readUrl(boot.hash); } catch (err) { state.layer = 'county'; buildUnits(); }
+      if (!applied) { paint(); if (state.gid) showEco(state.gid); }
     });
 
   // A shared link wins; otherwise open on Des Moines, the example that started this.
