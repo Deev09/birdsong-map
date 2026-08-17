@@ -294,11 +294,30 @@ function audible(list) {
   return list.filter(([k]) => SPECIES[k].clip);
 }
 
-/** Birds shown for the current county+month, after any sound filter. */
+/**
+ * Birds with a verified recording — what the map instrument can actually play.
+ * Drives hover, the halo, and the sound-shape filters.
+ */
 function currentList(gid) {
   const l = audible(listFor(gid, state.month));
   const f = l.filter(([k]) => matchesShape(k));
   return state.shape ? f : l;
+}
+
+/**
+ * Every bird recorded here, whether or not we have a sound for it.
+ *
+ * 59 of the 257 species have no recording we can stand behind — either
+ * Wikimedia and xeno-canto have nothing usable, or an independent classifier
+ * could not confirm what they do have. Silently omitting those made the list
+ * quietly wrong: Turkey Vulture is one of the most-reported birds in Iowa and
+ * simply vanished. Showing it with no player is honest; playing an
+ * unverifiable recording of it would not be.
+ */
+function railList(gid) {
+  const l = listFor(gid, state.month);
+  // With a sound filter on, birds without sound can't match it by definition.
+  return state.shape ? l.filter(([k]) => SPECIES[k].clip && matchesShape(k)) : l;
 }
 
 /** The county's sound mix as a proportion vector over SHAPE_ORDER. */
@@ -566,13 +585,15 @@ function drawRail() {
   rail.innerHTML = '';
   if (!state.gid) return;
 
-  const list = currentList(state.gid);
+  const list = railList(state.gid);
+  const withSound = list.filter(([k]) => SPECIES[k].clip).length;
   const name = REGIONS[state.gid].name;
   document.getElementById('place').textContent = name + ' County';
   const one = list.length === 1;
   document.getElementById('sub').textContent = state.shape
     ? `${list.length} bird${one ? '' : 's'} here in ${FULL[state.month]} with a ${state.shape}`
-    : `${list.length} bird${one ? '' : 's'} you could hear in ${FULL[state.month]} · most reported first`;
+    : `${list.length} bird${one ? '' : 's'} reported in ${FULL[state.month]} · `
+      + `${withSound} with a recording · most reported first`;
 
   if (!list.length) {
     rail.innerHTML = `<p style="color:var(--muted);font-size:13px">Nothing matches — try another sound or month.</p>`;
@@ -582,17 +603,27 @@ function drawRail() {
   const frag = document.createDocumentFragment();
   for (const [key] of list) {
     const sp = SPECIES[key];
+    const silent = !sp.clip;
     const b = document.createElement('button');
-    b.className = 'bird';
+    b.className = 'bird' + (silent ? ' silent' : '');
     b.dataset.key = key;
     b.innerHTML =
       `<figure>${sp.photo ? `<img src="${sp.photo.thumb}" alt="" loading="lazy">` : ''}</figure>
-       <div class="cap"><div class="cn"></div><div class="cs">${tagHtml(sp)}</div></div>`;
+       <div class="cap"><div class="cn"></div><div class="cs">${
+         silent ? '<span class="tag nosound">no recording</span>' : tagHtml(sp)
+       }</div></div>`;
     b.querySelector('.cn').textContent = sp.name;
-    b.addEventListener('pointerenter', () => { if (state.hoverSound) AudioKit.play(key); });
-    // Keyboard focus is the hover equivalent, so it obeys the same toggle.
-    b.addEventListener('focus', () => { if (state.hoverSound) AudioKit.play(key); });
-    b.addEventListener('click', () => tapBird(key, b, sp));
+    if (silent) {
+      // Reported here, but nothing we can vouch for. Say so and offer the
+      // details rather than pretending the bird isn't present.
+      b.title = `${sp.name} is reported here, but there is no recording we could verify`;
+      b.addEventListener('click', () => openSheet(key));
+    } else {
+      b.addEventListener('pointerenter', () => { if (state.hoverSound) AudioKit.play(key); });
+      // Keyboard focus is the hover equivalent, so it obeys the same toggle.
+      b.addEventListener('focus', () => { if (state.hoverSound) AudioKit.play(key); });
+      b.addEventListener('click', () => tapBird(key, b, sp));
+    }
     frag.appendChild(b);
   }
   rail.appendChild(frag);
@@ -661,11 +692,13 @@ function openSheet(key) {
   // Say so when an independent classifier could not confirm the recording.
   // Quietly shipping an unverified clip in an identification tool is the one
   // thing this project should never do.
-  document.getElementById('sheetTags').innerHTML = tagHtml(sp)
-    + (sp.verified === false
-      ? '<span class="tag unver" title="An independent classifier (BirdNET) could not'
-        + ' confirm this recording. Treat it with caution.">unverified recording</span>'
-      : '');
+  // No verified recording: show the bird, say there is no sound, and hide the
+  // player rather than offering a control that would do nothing.
+  const silent = !sp.clip;
+  document.getElementById('sheetTags').innerHTML = silent
+    ? '<span class="tag nosound">no recording we could verify</span>'
+    : tagHtml(sp);
+  document.getElementById('sheetPlay').hidden = silent;
   document.getElementById('sheetBlurb').textContent = sp.blurb || '';
   drawSpec(document.getElementById('sheetSpec'), key);
 

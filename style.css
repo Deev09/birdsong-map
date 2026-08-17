@@ -628,3 +628,12 @@ kbd {
   --c: var(--muted);
   font-style: italic;
 }
+
+/* Reported here, but with no recording we can vouch for. Shown, not hidden —
+   omitting them made the list quietly wrong. */
+.bird.silent { opacity: .58; cursor: default; }
+.bird.silent:hover { transform: none; border-color: var(--line); }
+.bird.silent figure img { filter: grayscale(.85); }
+
+.tag.nosound { --c: var(--muted); font-style: italic; }
+.replay[hidden] { display: none; }
