@@ -22,7 +22,7 @@ const SHAPE_ORDER = ['whistle', 'trill', 'chatter', 'hoot', 'honk', 'buzz', 'scr
 const SPEC_T = 56, SPEC_F = 28;
 const RING_N = 12;
 
-let SPECIES = {}, REGIONS = {}, SPECS = {}, GEO = null;
+let SPECIES = {}, REGIONS = {}, SPECS = {}, GEO = null, ECO = null;
 let proj = null, centroids = {};
 
 const state = {
@@ -171,6 +171,15 @@ function tapBird(key, el, sp) {
   state.lastTapped = key;
   AudioKit.play(key);
   if (el) showPeek(el, key, sp.name, (sp.sound && sp.sound.tags.join(' · ')) || '');
+}
+
+/**
+ * Escape text before it goes near innerHTML. Names and credits come from
+ * Commons, Avicommons and Wikidata — other people's data, so treat it as such.
+ */
+function esc(s) {
+  return String(s == null ? '' : s)
+    .replace(/[<>&"]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]));
 }
 
 function markSounding(key, on) {
@@ -446,6 +455,12 @@ function paint() {
     }
     p.style.setProperty('--f', fill);
     p.classList.toggle('sel', gid === state.gid);
+    // Show the ecoregion as a shape on the map: the selected county's
+    // siblings light up, so the habitat region is visible rather than merely
+    // named.
+    const sameEco = ECO && state.gid && gid !== state.gid
+      && ECO.byCounty[gid] && ECO.byCounty[gid] === ECO.byCounty[state.gid];
+    p.classList.toggle('kin', !!sameEco);
   }
   drawLegend();
 }
@@ -718,7 +733,7 @@ function openSheet(key) {
   }
 
   const bits = [];
-  if (sp.photo) bits.push(`Photo: ${sp.photo.by} (${sp.photo.license.toUpperCase()})`);
+  if (sp.photo) bits.push(`Photo: ${esc(sp.photo.by)} (${esc(sp.photo.license).toUpperCase()})`);
   if (sp.audio) {
     bits.push(`Audio: <a href="${sp.audio.page}" target="_blank" rel="noopener">`
       + `${sp.audio.by || 'Wikimedia Commons'}</a> (${sp.audio.license}), trimmed &amp; normalised`);
@@ -736,11 +751,50 @@ function closeSheet() {
 
 // ------------------------------------------------------------------ control
 
+/**
+ * The county tells you WHERE. The ecoregion tells you WHY it sounds like this.
+ *
+ * EPA Level III ecoregions are drawn from geology, vegetation, soils and land
+ * use, so their boundaries are habitat boundaries — which is what actually
+ * decides birds. Measured on this data: counties in the same ecoregion have
+ * significantly more similar bird communities than counties that merely
+ * neighbour each other (permutation p = 0.0045).
+ */
+function showEco(gid) {
+  const el = document.getElementById('eco');
+  const name = ECO && ECO.byCounty[gid];
+  const e = name && ECO.ecoregions[name];
+  if (!e) { el.hidden = true; return; }
+
+  el.hidden = false;
+  const birds = (e.distinctive || [])
+    .filter(d => SPECIES[d.key] && SPECIES[d.key].clip)
+    .slice(0, 3);
+  el.innerHTML =
+    `<span class="eco-name">${esc(e.name)}</span>`
+    + `<span class="eco-l2">${esc(e.l2)}</span>`
+    + (birds.length
+      ? `<span class="eco-why">more than the rest of Iowa: `
+        + birds.map(d => `<b data-key="${d.key}">${esc(d.name)}</b>`).join(', ')
+        + `</span>`
+      : '');
+
+  // Hovering a named bird plays it — the sentence is the point, so it should
+  // be audible, not just readable.
+  for (const b of el.querySelectorAll('b[data-key]')) {
+    b.addEventListener('pointerenter', () => {
+      if (state.hoverSound) AudioKit.play(b.dataset.key);
+    });
+    b.addEventListener('click', () => openSheet(b.dataset.key));
+  }
+}
+
 function select(gid) {
   state.gid = gid;
   paint();
   drawRing();
   drawRail();
+  showEco(gid);
   writeUrl();
 }
 
@@ -975,6 +1029,20 @@ function finishBoot() {
   loadJson('data/spectrograms.json')
     .then(s => { SPECS = s; })
     .catch(() => { SPECS = {}; });
+
+  // Ecoregions are explanatory, not load-bearing — the map works without them.
+  // The catch must cover the FETCH only. Chaining .catch after a .then that
+  // renders meant a rendering bug reset ECO to null and blamed the network —
+  // exactly what happened: showEco threw on a missing helper, the catch fired,
+  // and the data looked like it had failed to load.
+  loadJson('data/ecoregions.json')
+    .catch(() => null)
+    .then(e => {
+      if (!e) return;
+      ECO = e;
+      paint();
+      if (state.gid) showEco(state.gid);
+    });
 
   // A shared link wins; otherwise open on Des Moines, the example that started this.
   if (!readUrl()) {

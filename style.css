@@ -637,3 +637,33 @@ kbd {
 
 .tag.nosound { --c: var(--muted); font-style: italic; }
 .replay[hidden] { display: none; }
+
+/* ---------------- ecoregion ---------------- */
+
+/* Counties sharing the selected county's ecoregion — the habitat region made
+   visible, since that is what actually decides which birds are here. */
+#map path.kin { stroke: var(--accent); stroke-width: 1.1; stroke-opacity: .5; }
+
+.eco {
+  margin: 0 0 12px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.eco[hidden] { display: none; }
+
+.eco-name {
+  padding: 2px 9px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+  color: var(--accent);
+  font-weight: 650;
+}
+
+.eco-l2 { opacity: .8; }
+.eco-why b { color: var(--ink); font-weight: 600; cursor: pointer; }
+.eco-why b:hover { color: var(--accent); }
